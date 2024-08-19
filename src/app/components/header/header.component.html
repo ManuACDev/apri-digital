@@ -1,1 +1,29 @@
-<p>header works!</p>
+<header>
+  <div class="private-zone">
+    <a href="#" class="private-link">Zona privada</a>
+  </div>
+  <hr />
+  <div class="header-content">
+    <div class="logo">
+      <img src="assets/apri-digital.png" alt="Apri Digital Logo"/>
+    </div>
+    <nav class="navigation">
+        <ul>
+            <li><a routerLink="/servicios" routerLinkActive="active-link">SERVICIOS</a></li>
+            <li><a routerLink="/productos" routerLinkActive="active-link">PRODUCTOS</a></li>
+            <li><a routerLink="/proyectos" routerLinkActive="active-link">PROYECTOS</a></li>
+            <li><a routerLink="/contacto" routerLinkActive="active-link">CONTACTO</a></li>
+        </ul>
+    </nav>
+    <button class="menu-toggle" aria-label="Open Menu" (click)="toggleMenu()">&#9776;</button>
+    <nav class="side-menu" id="sideMenu">
+        <button class="close-menu" aria-label="Close Menu" (click)="toggleMenu()">&times;</button>
+        <ul>
+            <li><a routerLink="/servicios" routerLinkActive="active-link">SERVICIOS</a></li>
+            <li><a routerLink="/productos" routerLinkActive="active-link">PRODUCTOS</a></li>
+            <li><a routerLink="/proyectos" routerLinkActive="active-link">PROYECTOS</a></li>
+            <li><a routerLink="/contacto" routerLinkActive="active-link">CONTACTO</a></li>
+        </ul>
+    </nav>
+  </div>
+</header>
