@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ApriDigital
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.1.
@@ -25,3 +26,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+=======
+# apri-digital
+Web startup Apri Digital
+>>>>>>> 0bda1d48516975b53eb22ed9bbb2ccc95525021e
