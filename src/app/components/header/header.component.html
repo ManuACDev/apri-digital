@@ -1,29 +1,42 @@
-<header>
-  <div class="private-zone">
-    <a href="#" class="private-link">Zona privada</a>
-  </div>
-  <hr />
-  <div class="header-content">
-    <div class="logo">
-      <img src="assets/apri-digital.png" alt="Apri Digital Logo"/>
+<div class="header">
+  <section class="top-bar-wrapper">
+    <div class="top-bar">
+      <!--<span class="phone-number">Teléfono: 981 92 33 60</span>-->
+      <a href="#" class="private-link">ZONA PRIVADA</a>
     </div>
-    <nav class="navigation">
-        <ul>
-            <li><a routerLink="/servicios" routerLinkActive="active-link">SERVICIOS</a></li>
-            <li><a routerLink="/productos" routerLinkActive="active-link">PRODUCTOS</a></li>
-            <li><a routerLink="/proyectos" routerLinkActive="active-link">PROYECTOS</a></li>
-            <li><a routerLink="/contacto" routerLinkActive="active-link">CONTACTO</a></li>
-        </ul>
-    </nav>
-    <button class="menu-toggle" aria-label="Open Menu" (click)="toggleMenu()">&#9776;</button>
+  </section>
+
+  <header>
+    <div class="header-content">
+      <section class="logo">
+        <img src="assets/apri-digital.png" alt="Apri Digital Logo" />
+      </section>
+
+      <section class="nav-container">
+        <nav class="navigation">
+          <ul>
+            <li><a href="#" class="active">INICIO</a></li>
+            <li><a href="#">SERVICIOS</a></li>
+            <li><a href="#">PRODUCTOS</a></li>
+            <li><a href="#">PROYECTOS</a></li>
+            <li><a href="#">CONTACTO</a></li>
+          </ul>
+        </nav>
+        <div class="menu-container">
+          <button class="menu-toggle" aria-label="Open Menu" (click)="toggleMenu()">&#9776;</button>
+        </div>
+      </section>
+    </div>
+
     <nav class="side-menu" id="sideMenu">
-        <button class="close-menu" aria-label="Close Menu" (click)="toggleMenu()">&times;</button>
-        <ul>
-            <li><a routerLink="/servicios" routerLinkActive="active-link">SERVICIOS</a></li>
-            <li><a routerLink="/productos" routerLinkActive="active-link">PRODUCTOS</a></li>
-            <li><a routerLink="/proyectos" routerLinkActive="active-link">PROYECTOS</a></li>
-            <li><a routerLink="/contacto" routerLinkActive="active-link">CONTACTO</a></li>
-        </ul>
+      <button class="close-menu" aria-label="Close Menu" (click)="toggleMenu()">&times;</button>
+      <ul>
+        <li><a href="#">INICIO</a></li>
+        <li><a href="#">SERVICIOS</a></li>
+        <li><a href="#">PRODUCTOS</a></li>
+        <li><a href="#">PROYECTOS</a></li>
+        <li><a href="#">CONTACTO</a></li>
+      </ul>
     </nav>
-  </div>
-</header>
+  </header>
+</div>
