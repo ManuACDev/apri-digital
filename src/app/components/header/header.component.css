@@ -19,12 +19,35 @@
 }
 
 .private-link {
-  color: #999;
+  color: #636363;
   font-size: 0.9em;
   font-weight: bold;
   text-decoration: none;
   font-family: 'Figtree', sans-serif;
   padding: 15px 20px;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.private-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #999;
+  transition: width 0.3s ease;
+}
+
+.private-link:hover {
+  background-color: #f0f0f0;
+  color: #999;
+  letter-spacing: 1px;
+}
+
+.private-link:hover::after {
+  width: 100%;
 }
 
 .header-content {
