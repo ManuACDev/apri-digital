@@ -117,12 +117,14 @@
 
 .dropdown:hover .dropdown-menu {
   display: block;
+  visibility: visible;
   opacity: 1;
   transform: translateY(0);
 }
 
 .dropdown-menu {
   display: none;
+  visibility: hidden;
   position: absolute;
   top: calc(100% + 30px);
   left: 0;
@@ -140,12 +142,6 @@
 
 .dropdown .dropdown-link.active + .dropdown-menu {
   top: calc(100% + 32px); /* Cambia según la clase active */
-}
-
-.dropdown-menu:not(:hover) {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: none; /* Desactiva la transición para que desaparezca inmediatamente */
 }
 
 .dropdown-menu li a {
