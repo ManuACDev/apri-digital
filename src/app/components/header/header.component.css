@@ -212,7 +212,7 @@
   transition: background-color 0.3s ease, padding-left 0.3s ease;
 }
 
-.side-menu ul li a:hover {
+.side-menu ul li a:hover:not(.side-dropdown-link) {
   background-color: #e0e0e0;
   padding-left: 30px;
 }
@@ -241,6 +241,12 @@
 .side-dropdown-header {
   display: flex;
   align-items: center;
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.side-dropdown-header:hover {
+  background-color: #e0e0e0;
+  padding-left: 10px;
 }
 
 .side-dropdown-link {
