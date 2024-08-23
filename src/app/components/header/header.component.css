@@ -175,15 +175,16 @@
 
 .side-menu {
   position: fixed;
-  right: -250px;
   top: 0;
+  right: -250px;
   width: 250px;
   height: 100%;
-  background-color: #1c1c1c;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); /* Cambiado para sombra hacia la izquierda */
-  transition: right 0.3s ease; /* Cambiado para abrir desde la derecha */
+  background-color: #f5f5f5;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   padding-top: 60px;
   z-index: 1000;
+  overflow-y: auto;
+  transition: right 0.3s ease;
 }
 
 .side-menu.open {
@@ -193,32 +194,96 @@
 .side-menu ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .side-menu ul li {
-  padding: 15px 20px;
+  border-bottom: 1px solid #ddd;
+  position: relative;
 }
 
 .side-menu ul li a {
-  text-decoration: none;
-  color: #fff;
   display: block;
-  transition: background-color 0.3s;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: #333;
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 500;
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
 }
 
 .side-menu ul li a:hover {
-  background-color: #333;
+  background-color: #e0e0e0;
+  padding-left: 30px;
 }
 
 .close-menu {
   position: absolute;
   top: 10px;
-  left: 20px; /* Cambiado para la alineación desde la derecha */
-  font-size: 24px;
+  left: 20px;
+  font-size: 25px;
   background: none;
   border: none;
-  color: #fff;
+  color: #333;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.close-menu:hover {
+  transform: scale(1.1);
+}
+
+/* Estilos específicos para el enlace SERVICIOS y su flecha */
+.side-dropdown {
+  position: relative;
+}
+
+.side-dropdown-header {
+  display: flex;
+  align-items: center;
+}
+
+.side-dropdown-link {
+  flex-grow: 1;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: #333;
+  font-family: 'Red Hat Display', sans-serif;
+  font-weight: 500;
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.side-dropdown-toggle {
+  cursor: pointer;
+  padding-right: 20px;
+  color: #333;
+  transition: transform 0.3s ease;
+}
+
+/* Estilos para el submenú dentro del menú lateral */
+.side-dropdown.open .side-dropdown-menu {
+  display: block;
+}
+
+.side-dropdown-menu {
+  display: none;
+  padding-left: 15px !important;
+}
+
+.side-dropdown-menu li {
+  padding: 10px 0;
+}
+
+.side-dropdown-menu li a {
+  font-size: 14px;
+  padding-left: 10px;
+  color: #616161;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.side-dropdown-menu li a:hover {
+  padding-left: 20px;
+  color: #000;
 }
 
 @media (max-width: 1160px) {

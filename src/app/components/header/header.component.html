@@ -42,7 +42,19 @@
       <button class="close-menu" aria-label="Close Menu" (click)="toggleMenu()">&times;</button>
       <ul>
         <li><a href="#">INICIO</a></li>
-        <li><a href="#">SERVICIOS</a></li>
+        <li class="side-dropdown">
+          <div class="side-dropdown-header">
+            <a href="#" class="side-dropdown-link">SERVICIOS</a>
+            <span class="side-dropdown-toggle" (click)="toggleSubmenu($event)">▼</span>
+          </div>
+          
+          <ul class="side-dropdown-menu" id="servicesSubmenu">
+            <li><a href="#">Desarrollo de software</a></li>
+            <li><a href="#">Aplicaciones móviles</a></li>
+            <li><a href="#">Desarrollo Web</a></li>
+            <li><a href="#">Consultoría IT</a></li>
+          </ul>
+        </li>
         <li><a href="#">PRODUCTOS</a></li>
         <li><a href="#">PROYECTOS</a></li>
         <li><a href="#">CONTACTO</a></li>

@@ -16,4 +16,17 @@ export class HeaderComponent {
     }
   }
 
+  toggleSubmenu(event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const toggleElement = event.currentTarget as HTMLElement;
+    const parentElement = toggleElement.closest('.side-dropdown');
+
+    if (parentElement) {
+        const isOpen = parentElement.classList.toggle('open');
+        toggleElement.textContent = isOpen ? "▲" : "▼";
+    }
+  }
+
 }
