@@ -11,9 +11,9 @@ import { CommonModule } from '@angular/common';
 export class SliderComponent {
   
   slides = [
-    { image: "assets/consultoria-software.jpg", title: 'TITULO PRINCIPAL 1', description: 'Esto es una gran descripción 1' },
-    { image: "assets/servicios-desarrollo-software.jpg", title: 'TITULO PRINCIPAL 2', description: 'Esto es una gran descripción 2' },
-    { image: "assets/boreas-rutas.jpg", title: 'TITULO PRINCIPAL 3', description: 'Esto es una gran descripción 3' }
+    { image: "assets/consultoria-software.jpg", title: "Consultoría de Software", description: "Soluciones personalizadas para optimizar tu negocio." },
+    { image: "assets/trabajo-equipo.png", title: "Trabajo en Equipo", description: "Colaboración efectiva para soluciones de software innovadoras." },
+    { image: "assets/desarrollo-software-1.png", title: "Desarrollo de Software", description: "Innovación en desarrollo móvil y web a medida." }
   ];
   
   currentSlide = 0;
