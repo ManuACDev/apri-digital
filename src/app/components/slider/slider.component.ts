@@ -17,15 +17,15 @@ export class SliderComponent {
       description: "Soluciones personalizadas para optimizar tu negocio",
       captionPosition: { top: "225px", left: "25%", transform: "translateX(-50%)" }
     },
-    { image: "assets/trabajo-equipo.png", 
-      title: "Trabajo en Equipo", 
-      description: "Colaboración efectiva para soluciones de software innovadoras",
-      captionPosition: { bottom: "50px", left: "50%", transform: "translateX(-50%)" }
-    },
     { image: "assets/desarrollo-software-1.png", 
       title: "Desarrollo de Software", 
       description: "Innovación en desarrollo móvil y web a medida",
       captionPosition: { top: "50px", right: "5%", transform: "translateX(5%)" }
+    },
+    { image: "assets/trabajo-equipo.png", 
+      title: "Trabajo en Equipo", 
+      description: "Colaboración efectiva para soluciones de software innovadoras",
+      captionPosition: { top: "185px", left: "40%", transform: "translateX(-50%)" }
     }
   ];
   
