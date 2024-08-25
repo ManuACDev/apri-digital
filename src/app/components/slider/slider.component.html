@@ -1,7 +1,7 @@
 <div class="slider-container">
   <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(' + (-currentSlide * 100) + '%)'}">
     <div class="slide" *ngFor="let slide of slides; let i = index" [ngStyle]="{'background-image': 'url(' + slide.image + ')'}">
-      <div class="caption" [class.active-caption]="i === currentSlide">
+      <div class="caption" [ngStyle]="slide.captionPosition" [class.active-caption]="i === currentSlide">
         <h2>{{slide.title}}</h2>
         <p>{{slide.description}}</p>
       </div>
