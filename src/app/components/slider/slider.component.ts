@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './slider.component.html',
   styleUrl: './slider.component.css'
 })
-export class SliderComponent {
+export class SliderComponent implements OnInit, OnDestroy {
   
   slides = [
     { 
@@ -30,6 +30,34 @@ export class SliderComponent {
   ];
   
   currentSlide = 0;
+  autoSlideInterval: any;
+
+  constructor(private ngZone: NgZone) {}
+
+  ngOnInit() {
+    this.startAutoSlide();
+  }
+
+  ngOnDestroy() {
+    this.stopAutoSlide();
+  }
+
+  startAutoSlide() {
+    this.ngZone.runOutsideAngular(() => {
+      this.autoSlideInterval = setInterval(() => {
+        this.ngZone.run(() => {
+          this.nextSlide();
+        });
+      }, 8000);
+    });
+  }
+
+  stopAutoSlide() {
+    if (this.autoSlideInterval) {
+      clearInterval(this.autoSlideInterval);
+      this.autoSlideInterval = null;
+    }
+  }
   
   nextSlide() {
     this.currentSlide = (this.currentSlide + 1) % this.slides.length;
@@ -41,6 +69,8 @@ export class SliderComponent {
 
   goToSlide(index: number) {
     this.currentSlide = index;
+    this.stopAutoSlide();
+    this.startAutoSlide();
   }
 
 }
