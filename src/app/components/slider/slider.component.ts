@@ -58,6 +58,11 @@ export class SliderComponent implements OnInit, OnDestroy {
       this.autoSlideInterval = null;
     }
   }
+
+  resetAutoSlide() {
+    this.stopAutoSlide();
+    this.startAutoSlide();
+  }
   
   nextSlide() {
     this.currentSlide = (this.currentSlide + 1) % this.slides.length;
@@ -69,8 +74,15 @@ export class SliderComponent implements OnInit, OnDestroy {
 
   goToSlide(index: number) {
     this.currentSlide = index;
+    this.resetAutoSlide();
+  }
+
+  onMouseEnter() {
     this.stopAutoSlide();
-    this.startAutoSlide();
+  }
+
+  onMouseLeave() {
+    this.resetAutoSlide();
   }
 
 }

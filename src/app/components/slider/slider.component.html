@@ -1,4 +1,4 @@
-<div class="slider-container">
+<div class="slider-container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" (touchstart)="onMouseEnter()" (touchend)="onMouseLeave()">
   <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(' + (-currentSlide * 100) + '%)'}">
     <div class="slide" *ngFor="let slide of slides; let i = index" [ngStyle]="{'background-image': 'url(' + slide.image + ')'}">
       <div class="caption" [ngStyle]="slide.captionPosition" [class.active-caption]="i === currentSlide">
