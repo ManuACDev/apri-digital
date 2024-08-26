@@ -113,3 +113,60 @@
 .dot.active {
   background-color: rgba(0, 0, 0, 0.9);
 }
+
+/* Responsividad para pantallas grandes (pantallas de escritorio) */
+@media (min-width: 1200px) {
+  .slider-container {
+    height: 500px; /* Altura mayor para pantallas grandes */
+  }
+
+  .caption h2 {
+    font-size: 2.5em; /* Tamaño de fuente aumentado */
+  }
+
+  .caption p {
+    font-size: 1.2em; /* Tamaño de fuente aumentado */
+  }
+}
+
+/* Responsividad para pantallas medianas (tabletas) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .slider-container {
+    height: 400px; /* Altura ajustada para pantallas medianas */
+  }
+
+  .caption h2 {
+    font-size: 1.8em; /* Tamaño de fuente ajustado para pantallas medianas */
+  }
+
+  .caption p {
+    font-size: 1em; /* Tamaño de fuente ajustado para pantallas medianas */
+  }
+
+  .slider-button {
+    width: 35px; /* Tamaño ligeramente mayor para pantallas medianas */
+    height: 35px;
+    font-size: 1.3em; /* Tamaño de fuente ligeramente mayor */
+  }
+}
+
+/* Responsividad para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  .slider-container {
+    height: 300px; /* Altura ajustada para dispositivos móviles */
+  }
+
+  .caption h2 {
+    font-size: 1.5em; /* Tamaño de fuente reducido */
+  }
+
+  .caption p {
+    font-size: 0.8em; /* Tamaño de fuente reducido */
+  }
+
+  .slider-button {
+    width: 30px; /* Tamaño reducido de los botones */
+    height: 30px;
+    font-size: 1.2em; /* Tamaño de fuente reducido */
+  }
+}
