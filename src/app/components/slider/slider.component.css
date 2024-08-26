@@ -44,13 +44,13 @@
 }
 
 .caption h2 {
-  font-size: 36px;
+  font-size: 2.5em;
   font-family: 'Red Hat Display', sans-serif;
   margin: 0;
 }
 
 .caption p {
-  font-size: 19px;
+  font-size: 1.2em;
   font-family: 'Figtree', sans-serif;
   margin: 5px 0 0 0;
 }
@@ -114,25 +114,10 @@
   background-color: rgba(0, 0, 0, 0.9);
 }
 
-/* Responsividad para pantallas grandes (pantallas de escritorio) */
-@media (min-width: 1200px) {
-  .slider-container {
-    height: 500px; /* Altura mayor para pantallas grandes */
-  }
-
-  .caption h2 {
-    font-size: 2.5em; /* Tamaño de fuente aumentado */
-  }
-
-  .caption p {
-    font-size: 1.2em; /* Tamaño de fuente aumentado */
-  }
-}
-
 /* Responsividad para pantallas medianas (tabletas) */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (max-width: 1160px) {
   .slider-container {
-    height: 400px; /* Altura ajustada para pantallas medianas */
+    height: 450px; /* Altura ajustada para pantallas medianas */
   }
 
   .caption h2 {
@@ -151,9 +136,16 @@
 }
 
 /* Responsividad para pantallas pequeñas (móviles) */
-@media (max-width: 768px) {
+@media (max-width: 822px) {
   .slider-container {
-    height: 300px; /* Altura ajustada para dispositivos móviles */
+    height: 300px;
+  }
+
+  .caption {
+    width: 100%;
+    top: 8% !important;
+    left: 50% !important;
+    transform: translate(-50%) !important;
   }
 
   .caption h2 {
@@ -165,8 +157,8 @@
   }
 
   .slider-button {
-    width: 30px; /* Tamaño reducido de los botones */
+    width: 30px;
     height: 30px;
-    font-size: 1.2em; /* Tamaño de fuente reducido */
+    font-size: 1em;
   }
 }
