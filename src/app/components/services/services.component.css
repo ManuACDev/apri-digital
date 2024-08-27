@@ -1,45 +1,77 @@
 .services-container {
-  padding: 20px;
+  padding: 40px 20px;
+  background-color: #ffffff; /* Fondo blanco */
   text-align: center;
 }
 
 .services-title {
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #2c3e50;
+  font-family: 'Roboto Slab', serif;
+}
+
+.services-subtitle {
+  font-size: 1.2em;
+  margin-bottom: 40px;
+  color: #7f8c8d;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  gap: 40px; /* Aumentar el espacio entre tarjetas */
+  max-width: 800px; /* Ancho máximo del grid */
+  margin: 0 auto;
 }
 
 .service-card {
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f4f4f4; /* Fondo gris claro */
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra para destacar la tarjeta */
+  border: 1px solid #e0e0e0; /* Borde para mayor diferenciación */
   overflow: hidden;
-  text-align: center;
-  padding: 20px;
+  padding: 15px; /* Reducir el padding */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .service-image {
-  width: 50%;
-  height: 200px;
+  width: 80px; /* Tamaño reducido de la imagen */
+  height: 80px;
   object-fit: cover;
-  display: block;
+  border-radius: 50%; /* Forma circular */
+  margin-bottom: 15px;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover .service-image {
+  opacity: 0.9;
 }
 
 .service-title {
-  font-size: 1.5em;
+  font-size: 1.2em; /* Reducir un poco el tamaño del título */
   margin: 10px 0;
+  color: #34495e;
+  font-weight: 600;
+  font-family: 'Roboto Slab', serif;
 }
 
 .service-description {
-  font-size: 1em;
-  color: #666;
+  font-size: 1em; /* Mantener el tamaño de la descripción */
+  color: #7f8c8d;
+  line-height: 1.6;
+  font-family: 'Open Sans', sans-serif;
 }
