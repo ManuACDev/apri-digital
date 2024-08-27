@@ -1,4 +1,5 @@
 .services-container {
+  width: 100%;
   padding: 40px 20px;
   background-color: #ffffff; /* Fondo blanco */
   text-align: center;
@@ -9,7 +10,7 @@
   margin-bottom: 10px;
   font-weight: bold;
   color: #2c3e50;
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Roboto Mono', sans-serif;
 }
 
 .services-subtitle {
@@ -58,7 +59,6 @@
   object-fit: cover;
   border-radius: 50%; /* Forma circular */
   margin-bottom: 15px;
-  transition: opacity 0.3s ease;
 }
 
 .service-card:hover .service-image {
@@ -70,7 +70,7 @@
   margin: 10px 0;
   color: #34495e;
   font-weight: 600;
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Red Hat Display', sans-serif;
 }
 
 .service-description {
