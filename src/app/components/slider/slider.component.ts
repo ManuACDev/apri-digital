@@ -12,17 +12,17 @@ export class SliderComponent implements OnInit, OnDestroy {
   
   slides = [
     { 
-      image: "assets/consultoria-software.jpg", 
+      image: "assets/slider/consultoria-software.jpg", 
       title: "Consultoría de Software", 
       description: "Soluciones personalizadas para optimizar tu negocio",
       captionPosition: { top: "225px", left: "25%", transform: "translateX(-50%)" }
     },
-    { image: "assets/desarrollo-software-1.png", 
+    { image: "assets/slider/desarrollo-software-1.png", 
       title: "Desarrollo de Software", 
       description: "Innovación en desarrollo móvil y web a medida",
       captionPosition: { top: "50px", right: "5%", transform: "translateX(5%)" }
     },
-    { image: "assets/trabajo-equipo.png", 
+    { image: "assets/slider/trabajo-equipo.png", 
       title: "Trabajo en Equipo", 
       description: "Colaboración efectiva para soluciones de software innovadoras",
       captionPosition: { top: "185px", left: "40%", transform: "translateX(-50%)" }
