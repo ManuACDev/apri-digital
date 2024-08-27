@@ -48,6 +48,15 @@
   margin: auto;
 }
 
+.service-card a {
+  width: 100%;
+  display: block;
+  padding: 10px; /* Ajusta el padding dentro del enlace */
+  text-decoration: none;
+  color: inherit; /* Mantiene el color del texto */
+  text-align: center;
+}
+
 .service-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
