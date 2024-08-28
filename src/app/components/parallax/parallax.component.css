@@ -26,10 +26,23 @@
   max-width: 300px;
 }
 
+.icon-background {
+  background-color: black;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+}
+
 .icon {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 10px;
+  display: block;
+  max-width: 60%;
+  max-height: 60%;
+  object-fit: contain;
+  filter: invert(1);
 }
 
 h3 {
