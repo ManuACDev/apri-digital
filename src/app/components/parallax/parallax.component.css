@@ -57,3 +57,83 @@ p {
   color: #333;
   font-family: 'Open Sans', sans-serif;
 }
+
+/* Media Query para pantallas medianas (hasta 1160px) */
+@media (max-width: 1160px) {
+  .parallax-container {
+    min-height: 600px; /* Ajusta automáticamente la altura */
+    padding: 20px 0;
+  }
+
+  .parallax-content {
+    gap: 15px;
+    padding: 0 10px;
+    max-height: 100%;
+  }
+
+  .info-card {
+    max-width: 250px;
+    padding-top: 15px;
+  }
+}
+
+/* Media Query para pantallas pequeñas (hasta 822px) */
+@media (max-width: 880px) {
+  .parallax-container {
+    min-height: 700px; /* Aumenta la altura para móviles */
+    padding: 40px 0;
+    background-attachment: scroll; /* Mejora el rendimiento en móviles */
+  }
+
+  .parallax-content {
+    flex-direction: column; /* Apila verticalmente */
+    align-items: center; /* Centra las tarjetas */
+    gap: 10px;
+    width: 80%; /* Reduce el ancho del contenido al 90% */
+    margin: 0 auto; /* Centra el contenido con un margen automático */
+    padding: 0 15px;
+    max-height: 100%;
+  }
+
+  .info-card {
+    max-width: 100%;
+    padding-top: 15px;
+  }
+}
+
+/* Media Query para pantallas extra pequeñas (menos de 400px) */
+@media (max-width: 400px) {
+  .parallax-container {
+    height: auto; /* Permite que el contenedor se ajuste al contenido */
+    padding: 10px 0; /* Menos padding para pantallas pequeñas */
+  }
+
+  .parallax-content {
+    width: 90%; /* Reduce el ancho del contenido */
+    padding: 0 5px; /* Menos padding lateral */
+    gap: 5px; /* Reduce el espacio entre tarjetas */
+  }
+
+  .info-card {
+    max-width: 100%;
+    margin-bottom: 5px; /* Reduce el margen inferior */
+  }
+
+  .icon-background {
+    width: 50px; /* Reduce el tamaño del círculo */
+    height: 50px;
+  }
+
+  .icon {
+    max-width: 40%;
+    max-height: 40%;
+  }
+
+  h3 {
+    font-size: 1.2em; /* Reduce el tamaño del texto */
+  }
+
+  p {
+    font-size: 0.9em; /* Reduce el tamaño del texto */
+  }
+}
