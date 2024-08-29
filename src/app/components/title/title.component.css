@@ -1,0 +1,33 @@
+.title-section {
+  position: relative;
+  text-align: left;
+  overflow: hidden;
+  width: 100%;
+  height: 400px; /* Ajusta la altura del contenedor según sea necesario */
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.full-width-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
+  object-position: bottom; /* Muestra siempre la parte inferior de la imagen */
+}
+
+.page-title {
+  position: absolute;
+  top: 25px;
+  left: 4%;
+  font-size: 2rem;
+  font-family: 'Inter', sans-serif;
+  color: #ffffff; /* Color del texto en blanco para destacar sobre la imagen */
+  max-width: 50%; /* Limita el ancho del texto para evitar desbordamiento */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Sombra para hacer que el texto sea más legible */
+  padding: 0 10px;
+  text-align: left;
+}
