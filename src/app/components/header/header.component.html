@@ -20,7 +20,7 @@
             <li><a routerLink="/home" class="active">INICIO</a></li>
             
             <li class="dropdown">
-              <a href="#" class="dropdown-link">SERVICIOS</a>
+              <a routerLink="/services" class="dropdown-link">SERVICIOS</a>
               <ul class="dropdown-menu">
                 <li><a href="#">Desarrollo de software</a></li>
                 <li><a href="#">Aplicaciones móviles</a></li>
@@ -43,11 +43,11 @@
     <nav class="side-menu" id="sideMenu">
       <button class="close-menu" aria-label="Close Menu" (click)="toggleMenu()">&times;</button>
       <ul>
-        <li><a href="#">INICIO</a></li>
+        <li><a routerLink="/home">INICIO</a></li>
 
         <li class="side-dropdown">
           <div class="side-dropdown-header">
-            <a href="#" class="side-dropdown-link">SERVICIOS</a>
+            <a routerLink="/services" class="side-dropdown-link">SERVICIOS</a>
             <span class="side-dropdown-toggle" (click)="toggleSubmenu($event)">▼</span>
           </div>
           
