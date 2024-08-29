@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ImageHeaderComponent } from './image-header.component';
+import { TitleComponent } from './title.component';
 
-describe('ImageHeaderComponent', () => {
-  let component: ImageHeaderComponent;
-  let fixture: ComponentFixture<ImageHeaderComponent>;
+describe('TitleComponent', () => {
+  let component: TitleComponent;
+  let fixture: ComponentFixture<TitleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ImageHeaderComponent]
+      imports: [TitleComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ImageHeaderComponent);
+    fixture = TestBed.createComponent(TitleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
