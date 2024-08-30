@@ -5,9 +5,17 @@
     </div>
     <div class="section-text">
       <h2 class="main-title">{{ mainTitle }}</h2>
-      <p class="paragraph">{{ paragraph1 }}</p>
-      <h3 class="sub-title">{{ subTitle }}</h3>
-      <p class="paragraph">{{ paragraph2 }}</p>
+      
+      <!-- Iterar sobre las secciones -->
+      <ng-container *ngFor="let section of sections">
+        <h3 class="sub-title">{{ section.title }}</h3>
+        <p class="paragraph">{{ section.content }}</p>
+        
+        <!-- Mostrar lista si está presente -->
+        <ul *ngIf="section.list?.length">
+          <li *ngFor="let item of section.list">{{ item }}</li>
+        </ul>
+      </ng-container>
     </div>
   </div>
 </section>

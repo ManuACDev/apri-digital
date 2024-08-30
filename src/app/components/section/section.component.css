@@ -1,17 +1,18 @@
 .section-container {
   display: flex;
-  justify-content: flex-start; /* Alinea el contenido al principio */
-  align-items: center; /* Alinea los elementos verticalmente al centro */
-  padding: 40px 20px;
-  background-color: #fff; /* Fondo blanco para toda la sección */
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+  background-color: #fff;
 }
 
 .section-content {
   display: flex;
   flex-direction: row;
-  align-items: center; /* Mantiene el contenido centrado verticalmente */
+  align-items: flex-start;
   max-width: 1200px;
   margin: 0 auto;
+  gap: 40px;
 }
 
 .section-image {
@@ -19,20 +20,117 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 20px; /* Espacio entre la imagen y el texto */
   position: relative;
 }
 
 .responsive-image {
-  max-width: 100%;
+  width: 100%;
+  max-width: 400px;
   height: auto;
-  margin-top: 50%; /* Ajusta la posición vertical de la imagen */
-  transform: translateY(-50%); /* Mueve la imagen hacia arriba un 50% para centrarla verticalmente */
+  transform: translateY(20%);
   border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .section-text {
   flex: 2;
   font-family: 'Open Sans', sans-serif;
   color: #333;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.main-title {
+  font-size: 2em;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.sub-title {
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+.paragraph {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  color: #555;
+}
+
+li {
+  margin-bottom: 5px;
+  font-size: 1.2em;
+}
+
+/* Media Query 1: Para pantallas medianas */
+@media (max-width: 1160px) {
+  .section-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .responsive-image {
+    max-width: 350px;
+    margin-top: 0;
+    transform: translateY(0);
+  }
+
+  .main-title {
+    font-size: 1.8em;
+  }
+
+  .sub-title {
+    font-size: 1.6em;
+  }
+
+  .paragraph {
+    font-size: 1.1em;
+  }
+
+  li {
+    font-size: 1.1em;
+  }
+}
+
+/* Media Query 2: Para pantallas pequeñas */
+@media (max-width: 822px) {
+  .section-content {
+    padding: 0 20px;
+  }
+
+  .section-image {
+    margin-bottom: 20px;
+  }
+
+  .responsive-image {
+    max-width: 280px;
+  }
+
+  .main-title {
+    font-size: 1.6em;
+  }
+
+  .sub-title {
+    font-size: 1.4em;
+  }
+
+  .paragraph {
+    font-size: 1em;
+  }
+
+  li {
+    font-size: 1em;
+  }
 }
