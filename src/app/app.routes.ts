@@ -4,6 +4,7 @@ import { ServicesPageComponent } from './pages/services-page/services-page.compo
 import { SoftwarePageComponent } from './pages/software-page/software-page.component';
 import { MobilePageComponent } from './pages/mobile-page/mobile-page.component';
 import { WebPageComponent } from './pages/web-page/web-page.component';
+import { ConsultoriaPageComponent } from './pages/consultoria-page/consultoria-page.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomePageComponent },
@@ -11,6 +12,7 @@ export const routes: Routes = [
     { path: 'desarrollo', component: SoftwarePageComponent },
     { path: 'mobile', component: MobilePageComponent },
     { path: 'web', component: WebPageComponent },
+    { path: 'consultoria', component: ConsultoriaPageComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', redirectTo: '/home' }
 ];
