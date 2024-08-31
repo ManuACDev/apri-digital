@@ -9,10 +9,10 @@ import { ConsultoriaPageComponent } from './pages/consultoria-page/consultoria-p
 export const routes: Routes = [
     { path: 'home', component: HomePageComponent },
     { path: 'services', component: ServicesPageComponent },
-    { path: 'desarrollo', component: SoftwarePageComponent },
-    { path: 'mobile', component: MobilePageComponent },
-    { path: 'web', component: WebPageComponent },
-    { path: 'consultoria', component: ConsultoriaPageComponent },
+    { path: 'services/desarrollo', component: SoftwarePageComponent },
+    { path: 'services/mobile', component: MobilePageComponent },
+    { path: 'services/web', component: WebPageComponent },
+    { path: 'services/consultoria', component: ConsultoriaPageComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', redirectTo: '/home' }
 ];
