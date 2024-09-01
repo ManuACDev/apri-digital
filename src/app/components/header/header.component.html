@@ -17,7 +17,7 @@
       <section class="nav-container">
         <nav class="navigation">
           <ul>
-            <li><a routerLink="/home" routerLinkActive="active" class="active">INICIO</a></li>
+            <li><a routerLink="/home" routerLinkActive="active">INICIO</a></li>
             
             <li class="dropdown">
               <a routerLink="/services" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" class="dropdown-link">SERVICIOS</a>
@@ -29,7 +29,7 @@
               </ul>
             </li>
 
-            <li><a href="#">PRODUCTOS</a></li>
+            <li><a routerLink="/productos" routerLinkActive="active">PRODUCTOS</a></li>
             <li><a href="#">PROYECTOS</a></li>
             <li><a href="#">CONTACTO</a></li>
           </ul>
@@ -59,7 +59,7 @@
           </ul>
         </li>
 
-        <li><a href="#">PRODUCTOS</a></li>
+        <li><a routerLink="/productos" routerLinkActive="active">PRODUCTOS</a></li>
         <li><a href="#">PROYECTOS</a></li>
         <li><a href="#">CONTACTO</a></li>
       </ul>
