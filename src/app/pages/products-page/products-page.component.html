@@ -1,2 +1,12 @@
 <app-title imageSrc="assets/title/productos-page.jpg" titleText="Desarrollamos productos enfocados
 a mejorar su negocio"></app-title>
+<section class="product-page">
+  
+  <div class="product-list">
+    <app-card
+      *ngFor="let product of products"
+      [product]="product"
+    ></app-card>
+  </div>
+
+</section>
