@@ -10,6 +10,7 @@ a mejorar su negocio"></app-title>
     <app-card
       *ngFor="let product of products"
       [product]="product"
+      (productClicked)="navigateToDetail(product.id)"
     ></app-card>
   </div>
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -10,11 +10,17 @@ import { RouterLink } from '@angular/router';
 })
 export class CardComponent {
 
-  @Input() product!: { 
+  @Input() product!: {
+    id: string; 
     title: string; 
     description: string; 
     imageSrc: string;
-    link: string; 
   };
+
+  @Output() productClicked = new EventEmitter<any>();
+
+  handleClick() {
+    this.productClicked.emit(this.product);
+  }
 
 }
