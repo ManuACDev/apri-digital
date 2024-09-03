@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { TitleComponent } from "../../components/title/title.component";
 import { ActivatedRoute } from '@angular/router';
+import { SectionComponent } from "../../components/section/section.component";
 
 @Component({
   selector: 'app-detail-page',
   standalone: true,
-  imports: [CommonModule, TitleComponent],
+  imports: [CommonModule, TitleComponent, SectionComponent],
   templateUrl: './detail-page.component.html',
   styleUrl: './detail-page.component.css'
 })

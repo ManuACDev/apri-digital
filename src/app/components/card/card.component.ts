@@ -14,8 +14,13 @@ export class CardComponent {
   @Input() product!: {
     id: string; 
     title: string; 
-    description: string; 
+    subtitle: string;
     imageSrc: string;
+    sections: {
+      title: string;
+      content: string;
+      list?: string[];
+    }[];
   };
 
 }

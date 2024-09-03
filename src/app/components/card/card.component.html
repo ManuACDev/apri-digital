@@ -2,6 +2,6 @@
   <a [routerLink]="['/productos/product.id']" [queryParams]="{ data: (product | json) }">
     <img [src]="product.imageSrc" alt="{{product.title}}" class="product-image">
     <h3 class="product-title">{{product.title}}</h3>
-    <p class="product-description">{{product.description}}</p>
+    <p class="product-description">{{product.subtitle}}</p>
   </a>
 </div>

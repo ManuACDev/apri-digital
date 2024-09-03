@@ -1,19 +1,7 @@
 <app-title imageSrc="assets/title/productos-page.jpg" titleText="Desarrollamos productos enfocados
 a mejorar su negocio"></app-title>
-<div class="detail-page" *ngIf="entity">
-  <h1 class="detail-title">{{ entity.title }}</h1>
-  <h3 class="detail-subtitle">Descubre más sobre {{ entity.title }}</h3>
-  
-  <div class="detail-content">
-    <img [src]="entity.imageSrc" alt="{{ entity.title }}" class="detail-image">
-  
-    <div class="detail-description">
-      <p>{{ entity.description }}</p>
-      <ul class="detail-features" *ngIf="entity.features && entity.features.length > 0">
-        <li *ngFor="let feature of entity.features">{{ feature }}</li>
-      </ul>
-      
-      <a *ngIf="entity.link" [href]="entity.link" class="action-button">Más Información</a>
-    </div>
-  </div>
-</div>
+<app-section 
+  [imageSrc]="entity.imageSrc" 
+  [mainTitle]="entity.title"
+  [sections]="entity.sections"
+></app-section>
