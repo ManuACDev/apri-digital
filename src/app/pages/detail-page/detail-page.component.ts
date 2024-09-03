@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { TitleComponent } from "../../components/title/title.component";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detail-page',
@@ -10,13 +10,25 @@ import { TitleComponent } from "../../components/title/title.component";
   templateUrl: './detail-page.component.html',
   styleUrl: './detail-page.component.css'
 })
-export class DetailPageComponent {
+export class DetailPageComponent implements OnInit {
 
   entity: any;
 
-  constructor(private router: Router) {
-    const navigation = this.router.getCurrentNavigation();
-    this.entity = navigation?.extras.state?.['product'];
-  }
+  constructor(private route: ActivatedRoute) {}
 
+  ngOnInit(): void {
+    this.route.queryParamMap.subscribe((paramMap) => {
+      const paramValue = paramMap.get('data');
+      
+      if (paramValue) {
+        try {
+          this.entity = JSON.parse(paramValue);
+        } catch (e) {
+          console.error('Error parsing JSON', e);
+          this.entity = paramValue;
+        }
+      }
+    });
+  }
+  
 }

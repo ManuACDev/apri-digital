@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
@@ -16,11 +17,5 @@ export class CardComponent {
     description: string; 
     imageSrc: string;
   };
-
-  @Output() productClicked = new EventEmitter<any>();
-
-  handleClick() {
-    this.productClicked.emit(this.product);
-  }
 
 }

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { TitleComponent } from "../../components/title/title.component";
 import { CardComponent } from "../../components/card/card.component";
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-page',
@@ -39,11 +38,5 @@ export class ProductsPageComponent {
       imageSrc: "assets/products/padel-group.jpg"
     }
   ];
-
-  constructor(private router: Router) {}
-
-  navigateToDetail(product: any) {
-    this.router.navigate(['/productos', product.id], { state: { product } });
-  }
 
 }
