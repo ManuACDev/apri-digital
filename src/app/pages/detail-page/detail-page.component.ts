@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { TitleComponent } from "../../components/title/title.component";
 import { ActivatedRoute } from '@angular/router';
 import { SectionComponent } from "../../components/section/section.component";
+import { SafeUrlPipe } from "../../pipes/safe-url.pipe";
 
 @Component({
   selector: 'app-detail-page',
   standalone: true,
-  imports: [CommonModule, TitleComponent, SectionComponent],
+  imports: [CommonModule, TitleComponent, SectionComponent, SafeUrlPipe],
   templateUrl: './detail-page.component.html',
   styleUrl: './detail-page.component.css'
 })

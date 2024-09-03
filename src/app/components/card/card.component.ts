@@ -16,6 +16,8 @@ export class CardComponent {
     title: string; 
     subtitle: string;
     imageSrc: string;
+    images?: string[];
+    videoUrl?: string;
     sections: {
       title: string;
       content: string;

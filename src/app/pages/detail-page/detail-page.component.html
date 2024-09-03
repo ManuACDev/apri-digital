@@ -5,3 +5,18 @@ a mejorar su negocio"></app-title>
   [mainTitle]="entity.title"
   [sections]="entity.sections"
 ></app-section>
+
+<div class="entity-gallery" *ngIf="entity.images?.length">
+  <h3>Galería de Imágenes</h3>
+  <div class="gallery-container">
+    <img *ngFor="let image of entity.images" [src]="image" [alt]="entity.title" class="gallery-image">
+  </div>
+</div>
+
+<!-- Sección de vídeo -->
+<div class="entity-video" *ngIf="entity.videoUrl">
+  <h3>Vídeo del Proyecto</h3>
+  <div class="video-container">
+    <iframe [src]="entity.videoUrl | safeUrl" frameborder="0" allowfullscreen></iframe>
+  </div>
+</div>
