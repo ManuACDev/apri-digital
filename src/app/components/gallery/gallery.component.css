@@ -58,6 +58,7 @@
   margin-top: 20px;
   font-size: 1em;
   transition: background-color 0.3s ease;
+  align-self: center;
 }
 
 .btn-see-more:hover {
@@ -96,50 +97,27 @@
   top: 10px;
   right: 20px;
   font-size: 30px;
-  font-weight: 1000;
-  color: rgb(238, 238, 238);
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.7);
-  box-shadow: 0px 3px 6px rgba(80, 80, 80, 0.5);
-  border: none;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease;
   line-height: 0.5;
-  z-index: 10;
 }
 
 .close:hover {
-  background-color: rgba(0, 0, 0, 0.9); /* Fondo más oscuro en hover */
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+.close, .prev, .next {
   background-color: rgba(0, 0, 0, 0.7);
   box-shadow: 0px 3px 6px rgba(80, 80, 80, 0.5);
   border: none;
-  width: 50px;
-  height: 50px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 25px;
-  z-index: 10;
   transition: background-color 0.3s ease;
-  color: rgb(238, 238, 238);  
-  line-height: 0.5;
-}
-
-.prev:hover, .next:hover {
-  background-color: rgba(0, 0, 0, 0.9);
+  color: rgb(238, 238, 238);
+  z-index: 10;
 }
 
 .prev {
@@ -148,6 +126,20 @@
 
 .next {
   right: 20px;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  line-height: 0.5;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 /* Media Query 1: Para pantallas medianas */
@@ -171,6 +163,12 @@
   .gallery-image {
     max-width: 350px;
   }
+
+  .close, .prev, .next {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
 }
 
 /* Media Query 2: Para pantallas pequeñas */
@@ -193,9 +191,9 @@
     max-width: 325px;
   }
 
-  .prev, .next {
+  .close, .prev, .next {
     font-size: 18px;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
   }
 }
