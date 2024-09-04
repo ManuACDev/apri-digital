@@ -1,1 +1,33 @@
-<p>gallery works!</p>
+<section class="section-container">
+  <div *ngIf="images.length" class="section-content">
+    <h3 class="sub-title">Galería de Imágenes</h3>
+    
+    <!-- Contenedor de la galería -->
+    <div class="gallery-container">
+      <!-- Mostrar solo las primeras tres imágenes -->
+      <ng-container *ngFor="let image of images.slice(0, 3); let i = index">
+        <img [src]="image" 
+             [alt]="'Imagen ' + (i + 1)" 
+             class="gallery-image" 
+             (click)="openLightbox(i)">
+      </ng-container>
+    </div>
+    
+    <!-- Botón de Ver Más -->
+    <button *ngIf="images.length > 3" class="btn-see-more" (click)="openLightbox(3)">
+        Ver Más
+    </button>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" *ngIf="lightboxOpen">
+    <div class="lightbox-content">
+      <span class="close" (click)="closeLightbox()">&times;</span>
+      <button class="prev" (click)="prevImage()">&#10094;</button>
+      <img [src]="images[currentImageIndex]" 
+           [alt]="'Imagen ' + (currentImageIndex + 1)" 
+           class="lightbox-image">
+      <button class="next" (click)="nextImage()">&#10095;</button>
+    </div>
+  </div>
+</section>
