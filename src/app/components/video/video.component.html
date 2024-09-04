@@ -1,1 +1,10 @@
-<p>video works!</p>
+<section class="section-cantainer">
+  <div *ngIf="videoUrl" class="section-content">
+    <h3 class="sub-title">Vídeo del Proyecto</h3>
+
+    <div class="video-container">
+      <video [src]="videoUrl" controls></video>
+    </div>
+
+  </div>
+</section>

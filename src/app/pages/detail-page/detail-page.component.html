@@ -8,10 +8,4 @@ a mejorar su negocio"></app-title>
 
 <app-gallery [images]="entity.images"></app-gallery>
 
-<!-- Sección de Vídeo -->
-<div class="entity-video" *ngIf="entity.videoUrl">
-  <h3 class="sub-title">Vídeo del Proyecto</h3>
-  <div class="video-container">
-    <iframe [src]="entity.videoUrl | safeUrl" frameborder="0" allowfullscreen></iframe>
-  </div>
-</div>
+<app-video [videoUrl]="entity.videoUrl"></app-video>
