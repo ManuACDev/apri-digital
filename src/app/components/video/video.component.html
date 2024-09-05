@@ -3,7 +3,10 @@
     <h3 class="sub-title">Vídeo del Proyecto</h3>
 
     <div class="video-container">
-      <video [src]="videoUrl" controls></video>
+      <video controls>
+        <source [src]="videoUrl" type="video/mp4">
+        Tu navegador no soporta la reproducción de vídeos.
+      </video>
     </div>
 
   </div>
