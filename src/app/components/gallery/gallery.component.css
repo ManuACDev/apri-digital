@@ -9,11 +9,11 @@
 .section-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   max-width: 1200px;
   margin: 0 auto;
   gap: 40px;
-  text-align: center;
+  text-align: left;
 }
 
 .sub-title {
@@ -21,9 +21,8 @@
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   color: #34495e;
-  margin-right: 65px;
   margin-bottom: 20px;
-  text-align: center;
+  text-align: left;
 }
 
 .gallery-container {
@@ -145,15 +144,11 @@
 /* Media Query 1: Para pantallas medianas */
 @media (max-width: 1160px) {
   .section-content {
-    flex-direction: column;
-    align-items: flex-start;
     gap: 30px;
   }
 
   .sub-title {
     font-size: 1.6em;
-    text-align: left;
-    margin-right: 0px;
   }
 
   .gallery-container {
@@ -179,8 +174,6 @@
 
   .sub-title {
     font-size: 1.4em;
-    text-align: left;
-    margin-right: 0px;
   }
 
   .gallery-container {
