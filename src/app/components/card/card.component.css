@@ -1,4 +1,4 @@
-.product-card {
+.entity-card {
   background-color: #f4f4f4;
   border-radius: 10px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
@@ -13,12 +13,12 @@
   margin: auto;
 }
 
-.product-card:hover {
+.entity-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
-.product-card a {
+.entity-card a {
   width: 100%;
   display: block;
   padding: 10px;
@@ -27,7 +27,7 @@
   text-align: center;
 }
 
-.product-image {
+.entity-image {
   width: 250px;
   height: auto;
   object-fit: cover;
@@ -35,7 +35,7 @@
   margin-bottom: 15px;
 }
 
-.product-title {
+.entity-title {
   font-size: 1.2em;
   margin: 10px 0;
   color: #34495e;
@@ -43,7 +43,7 @@
   font-family: 'Red Hat Display', sans-serif;
 }
 
-.product-description {
+.entity-description {
   font-size: 1em;
   color: #7f8c8d;
   line-height: 1.6;

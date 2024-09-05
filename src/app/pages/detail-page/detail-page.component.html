@@ -1,5 +1,13 @@
-<app-title imageSrc="assets/title/productos-page.jpg" titleText="Desarrollamos productos enfocados
-a mejorar su negocio"></app-title>
+<app-title *ngIf="entity.type === 'productos'" 
+           imageSrc="assets/title/productos-page.jpg" 
+           titleText="Desarrollamos productos enfocados a mejorar su negocio">
+</app-title>
+
+<app-title *ngIf="entity.type === 'proyectos'" 
+           imageSrc="assets/title/proyectos-page.png" 
+           titleText="Nuestro compromiso reflejado en cada proyecto">
+</app-title>
+
 <app-section 
   [imageSrc]="entity.imageSrc" 
   [mainTitle]="entity.title"

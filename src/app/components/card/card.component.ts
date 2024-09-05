@@ -11,8 +11,9 @@ import { RouterLink } from '@angular/router';
 })
 export class CardComponent {
 
-  @Input() product!: {
+  @Input() entity!: {
     id: string; 
+    type: string;
     title: string; 
     subtitle: string;
     imageSrc: string;

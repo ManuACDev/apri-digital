@@ -14,7 +14,8 @@ export class ProductsPageComponent {
 
   products = [
     {
-      id: 'track-manager',
+      id: "track-manager",
+      type: "productos",
       title: "TrackManager",
       subtitle: "App móvil para gestionar reservas de pistas deportivas e instalaciones recreativas. Adaptable a todo tipo de reservas.",
       imageSrc: "assets/products/padel-group.jpg",
@@ -34,7 +35,8 @@ export class ProductsPageComponent {
       ]
     },
     {
-      id: 'track-manager',
+      id: "track-manager",
+      type: "productos",
       title: "TrackManager",
       subtitle: "App móvil para gestionar reservas de pistas deportivas e instalaciones recreativas. Adaptable a todo tipo de reservas.",
       imageSrc: "assets/products/padel-group.jpg",
@@ -54,7 +56,8 @@ export class ProductsPageComponent {
       ]
     },
     {
-      id: 'track-manager',
+      id: "track-manager",
+      type: "productos",
       title: "TrackManager",
       subtitle: "App móvil para gestionar reservas de pistas deportivas e instalaciones recreativas. Adaptable a todo tipo de reservas.",
       imageSrc: "assets/products/padel-group.jpg",
@@ -74,7 +77,8 @@ export class ProductsPageComponent {
       ]
     },
     {
-      id: 'track-manager',
+      id: "track-manager",
+      type: "productos",
       title: "TrackManager",
       subtitle: "App móvil para gestionar reservas de pistas deportivas e instalaciones recreativas. Adaptable a todo tipo de reservas.",
       imageSrc: "assets/products/padel-group.jpg",

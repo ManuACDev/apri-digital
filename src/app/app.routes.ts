@@ -18,7 +18,7 @@ export const routes: Routes = [
     { path: 'services/consultoria', component: ConsultoriaPageComponent },
     { path: 'productos', component: ProductsPageComponent },
     { path: 'proyectos', component: ProjectsPageComponent },
-    { path: 'productos/:id', component: DetailPageComponent },
+    { path: ':type/:id', component: DetailPageComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', redirectTo: '/home' }
 ];

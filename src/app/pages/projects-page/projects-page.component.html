@@ -1,1 +1,15 @@
-<p>projects-page works!</p>
+<app-title imageSrc="assets/title/proyectos-page.png" titleText="Nuestro compromiso reflejado en cada proyecto"></app-title>
+<section class="project-page">
+  <h1 class="projects-title">Proyectos Destacados</h1>
+  <h3 class="projects-subtitle">
+    Innovación y excelencia en cada uno de nuestros trabajos.
+  </h3>
+
+  <div class="projects-list">
+    <app-card
+      *ngFor="let project of projects"
+      [entity]="project"
+    ></app-card>
+  </div>
+
+</section>
