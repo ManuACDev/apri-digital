@@ -11,5 +11,6 @@ import { Component, Input } from '@angular/core';
 export class VideoComponent {
 
   @Input() videoUrl: string = "";
+  @Input() entityType: string = "";
 
 }

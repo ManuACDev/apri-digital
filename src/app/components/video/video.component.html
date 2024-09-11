@@ -1,7 +1,7 @@
 <section class="section-container">
 
   <div *ngIf="videoUrl" class="title-container">
-    <h3 class="sub-title">Vídeo del Proyecto</h3>
+    <h3 class="sub-title">{{ entityType === "productos" ? "Vídeo del Producto" : "Vídeo del Proyecto" }}</h3>
   </div>
 
   <div *ngIf="videoUrl" class="section-content">
