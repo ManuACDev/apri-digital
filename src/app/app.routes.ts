@@ -8,6 +8,7 @@ import { ConsultoriaPageComponent } from './pages/consultoria-page/consultoria-p
 import { ProductsPageComponent } from './pages/products-page/products-page.component';
 import { DetailPageComponent } from './pages/detail-page/detail-page.component';
 import { ProjectsPageComponent } from './pages/projects-page/projects-page.component';
+import { ContactoPageComponent } from './pages/contacto-page/contacto-page.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomePageComponent },
@@ -19,6 +20,7 @@ export const routes: Routes = [
     { path: 'productos', component: ProductsPageComponent },
     { path: 'proyectos', component: ProjectsPageComponent },
     { path: ':type/:id', component: DetailPageComponent },
+    { path: 'contacto', component: ContactoPageComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', redirectTo: '/home' }
 ];
