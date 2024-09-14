@@ -26,7 +26,7 @@ export class ProjectsPageComponent implements OnInit {
   async getProyectos(): Promise<void> {
     try {
       
-      const proyectos = await lastValueFrom(this.firestoreService.getCollection<Entity>('Proyectos'));
+      const proyectos = await lastValueFrom(this.firestoreService.getCollection<Entity>("Proyectos"));
       //this.proyectos = proyectos.sort((a, b) => b.id - a.id);
       this.projects = proyectos;
 
