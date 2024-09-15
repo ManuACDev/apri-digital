@@ -3,14 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { TitleComponent } from "../../components/title/title.component";
 import { ActivatedRoute } from '@angular/router';
 import { SectionComponent } from "../../components/section/section.component";
-import { SafeUrlPipe } from "../../pipes/safe-url.pipe";
 import { GalleryComponent } from "../../components/gallery/gallery.component";
 import { VideoComponent } from "../../components/video/video.component";
 
 @Component({
   selector: 'app-detail-page',
   standalone: true,
-  imports: [CommonModule, TitleComponent, SectionComponent, SafeUrlPipe, GalleryComponent, VideoComponent],
+  imports: [CommonModule, TitleComponent, SectionComponent, GalleryComponent, VideoComponent],
   templateUrl: './detail-page.component.html',
   styleUrl: './detail-page.component.css'
 })
