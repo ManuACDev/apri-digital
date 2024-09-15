@@ -9,9 +9,11 @@ import { ProductsPageComponent } from './pages/products-page/products-page.compo
 import { DetailPageComponent } from './pages/detail-page/detail-page.component';
 import { ProjectsPageComponent } from './pages/projects-page/projects-page.component';
 import { ContactoPageComponent } from './pages/contacto-page/contacto-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomePageComponent },
+    { path: 'login', component: LoginPageComponent },
     { path: 'services', component: ServicesPageComponent },
     { path: 'services/desarrollo', component: SoftwarePageComponent },
     { path: 'services/mobile', component: MobilePageComponent },
