@@ -6,27 +6,31 @@ import { Router } from '@angular/router';
 })
 export class InteractionService {
 
+  successMessage: string = "";
+  errorMessage: string = "";
+
   constructor(private router: Router) { }
 
-  presentToast(mensaje: string, duration: number) {
-    const toast = document.createElement('div');
-    toast.className = 'custom-toast';
-    toast.textContent = mensaje;
-
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-      toast.classList.add('fade-out');
-      setTimeout(() => {
-        document.body.removeChild(toast);
-      }, 1000);
-    }, duration);
+  showSuccessMessage(message: string) {
+    this.successMessage = message;
+    this.errorMessage = "";
   }
 
-  navegarComponente(componente: string) {
-    this.presentToast("Cargando...", 500);
+  showErrorMessage(message: string) {
+    this.errorMessage = message;
+    this.successMessage = "";
+  }
+
+  navegarComponente(message: string, componente: string) {
+    this.clearMessages();
+    this.showSuccessMessage(message);
     setTimeout(() => {
       this.router.navigate(['/', componente]);
     }, 500);
+  }
+
+  clearMessages() {
+    this.successMessage = "";
+    this.errorMessage = "";
   }
 }

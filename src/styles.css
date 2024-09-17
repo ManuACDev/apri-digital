@@ -8,22 +8,20 @@ html, body {
   overflow-x: hidden;
 }
 
-.custom-toast {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #333;
-  font-family: 'Open Sans', sans-serif;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  opacity: 1;
-  transition: opacity 1s ease-in-out;
-  z-index: 9999;
+.success-message {
+  color: #28a745;
+  font-size: 16px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #d4edda;
+  border-radius: 4px;
 }
 
-.custom-toast.fade-out {
-  opacity: 0;
+.error-message {
+  color: #dc3545;
+  font-size: 16px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f8d7da;
+  border-radius: 4px;
 }

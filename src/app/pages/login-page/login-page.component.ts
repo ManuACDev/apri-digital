@@ -1,45 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { InteractionService } from '../../services/interaction.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnInit {
 
   email: string = "";
   password: string = "";
 
-  constructor(private auth: AuthService, private interaction: InteractionService) {}
+  constructor(private auth: AuthService, public interaction: InteractionService) {}
+
+  ngOnInit() {
+    this.interaction.clearMessages();
+  }
 
   async login() {
+    this.interaction.clearMessages();
     if (!this.email || !this.password) {
-      this.interaction.presentToast("El correo y la contraseña son oblligatorios", 1500);
+      this.interaction.showErrorMessage("El correo y la contraseña son obligatorios.");
     } else {
-      this.interaction.presentToast("Cargando...", 1500);
-      this.auth.login(this.email, this.password).then((res) => {
+      this.interaction.showSuccessMessage("Cargando...");      
+      await this.auth.login(this.email, this.password).then((res) => {
         if (res && res.user) {
-         this.interaction.navegarComponente("home");
-        } else {
-          this.interaction.presentToast("Error al iniciar sesión: ", 1500);
+          this.interaction.clearMessages();
+          this.interaction.navegarComponente("Inicio de sesión exitoso.", "home");
         }
-      }).catch(error => {
+      }).catch((error) => {
+        this.interaction.clearMessages();
         if (error.code === "auth/wrong-password" || error.code === "auth/invalid-credential") {
-          this.interaction.presentToast("Las credenciales proporcionadas son incorrectas", 1500);
+         this.interaction.showErrorMessage("Las credenciales proporcionadas son incorrectas.");
         } else if (error.code === "auth/user-disabled") {
-          this.interaction.presentToast("Tu cuenta está deshabilitada. Por favor, contacta al soporte para más información.", 1500);
+          this.interaction.showErrorMessage("Tu cuenta está deshabilitada. Por favor, contacta al soporte para más información.");
         } else if (error.code === "auth/too-many-requests") {
-          this.interaction.presentToast("Demasiados intentos fallidos. Por favor, espera antes de intentarlo de nuevo.", 1500);
+          this.interaction.showErrorMessage("Demasiados intentos fallidos. Por favor, espera antes de intentarlo de nuevo.");
         } else {
-          this.interaction.presentToast("Error al iniciar sesión.", 1500); 
+          this.interaction.showErrorMessage("Error al iniciar sesión.");
         }
-      }); 
-    }    
+      });      
+    }
   }
 
   async forgotPassword() {
