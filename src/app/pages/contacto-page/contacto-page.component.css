@@ -121,24 +121,6 @@ textarea {
   margin-top: 5px;
 }
 
-.success-message {
-  color: #28a745;
-  font-size: 16px;
-  margin-bottom: 20px;
-  padding: 10px;
-  background-color: #d4edda;
-  border-radius: 4px;
-}
-
-.error-message {
-  color: #dc3545;
-  font-size: 16px;
-  margin-bottom: 20px;
-  padding: 10px;
-  background-color: #f8d7da;
-  border-radius: 4px;
-}
-
 @media (max-width: 822px) { 
   .contact-container {
     flex-direction: column;

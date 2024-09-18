@@ -58,12 +58,12 @@
         </div>
       </div>
 
-      <div *ngIf="successMessage" class="success-message">
-        {{ successMessage }}
+      <div *ngIf="interaction.successMessage" class="success-message">
+        {{ interaction.successMessage }}
       </div>
       
-      <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
+      <div *ngIf="interaction.errorMessage" class="error-message">
+        {{ interaction.errorMessage }}
       </div>
 
       <button type="submit" class="submit-btn">Enviar mensaje</button>
