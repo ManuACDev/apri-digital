@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FirestoreService } from '../../services/firestore.service';
 import { lastValueFrom } from 'rxjs';
 import { Entity } from '../../models/entity';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-products-page',
@@ -16,8 +17,16 @@ import { Entity } from '../../models/entity';
 export class ProductsPageComponent implements OnInit {
 
   products: Entity[] = [];
+  isAuthenticated: boolean = false;
+  mostrarFormulario: boolean = false;
 
-  constructor(private firestoreService: FirestoreService) { }
+  constructor(private firestoreService: FirestoreService, private auth: AuthService) {
+    this.auth.user$.subscribe(user => {
+      this.isAuthenticated = !!user;
+      console.log("isAuthenticated: " + this.isAuthenticated)
+    });
+
+  }
 
   ngOnInit() {
     this.getProductos();
@@ -33,6 +42,10 @@ export class ProductsPageComponent implements OnInit {
     } catch (error) {
       console.error("Error al obtener los productos: ", error);
     }
+  }
+
+  toggleFormulario() {
+    this.mostrarFormulario = !this.mostrarFormulario;
   }
 
 }
