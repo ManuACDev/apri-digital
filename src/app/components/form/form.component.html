@@ -17,7 +17,7 @@
         <label for="imageSrc">Imagen Principal</label>
         <input (change)="onImageSelected($event)" id="imageSrc" type="file" accept="image/*">
       </div>
-      <!--
+      
       <div>
         <label for="images">Imágenes adicionales</label>
         <input (change)="onImagesSelected($event)" id="images" type="file" accept="image/*" multiple>
@@ -38,14 +38,14 @@
             <textarea id="sectionContent{{i}}" formControlName="content" class="form-textarea"></textarea>
 
             <label for="sectionList{{i}}">Lista (opcional)</label>
-            <input id="sectionList{{i}}" formControlName="list" type="text" placeholder="Añadir elementos separados por comas" class="form-input">
+            <input id="sectionList{{i}}" formControlName="list" type="text" placeholder="Añadir elementos separados por puntos" class="form-input">
 
             <button type="button" (click)="removeSection(i)" class="remove-button">Eliminar sección</button>
           </div>
         </div>
 
         <button type="button" (click)="addSection()" class="add-button">Añadir Sección</button>
-      </div>-->
+      </div>
 
       <button type="submit" class="save-button">Guardar {{ entityType }}</button>
     </form>
