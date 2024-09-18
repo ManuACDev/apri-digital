@@ -2,11 +2,23 @@
 a mejorar su negocio"></app-title>
 <section class="product-page">
   <h1 class="products-title">Productos que impulsan tu negocio</h1>
-  <h3 class="products-subtitle">
-    Tecnología y calidad en cada uno de nuestros productos.
-  </h3>
+
+  <div class="header-container">
+    <h3 class="products-subtitle">
+      Tecnología y calidad en cada uno de nuestros productos.
+    </h3>
+    <button *ngIf="isAuthenticated" (click)="showForm = !showForm" class="add-button">+</button>
+  </div>
 
   <div class="product-list">
+    <div *ngIf="showForm">
+      <app-form
+        [entity]="entity"
+        entityType="productos"
+        (submitForm)="onSubmitProduct($event)">
+      </app-form>
+    </div>
+
     <app-card
       *ngFor="let product of products"
       [entity]="product"

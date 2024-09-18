@@ -6,11 +6,12 @@ import { FirestoreService } from '../../services/firestore.service';
 import { lastValueFrom } from 'rxjs';
 import { Entity } from '../../models/entity';
 import { AuthService } from '../../services/auth.service';
+import { FormComponent } from "../../components/form/form.component";
 
 @Component({
   selector: 'app-products-page',
   standalone: true,
-  imports: [TitleComponent, CardComponent, CommonModule],
+  imports: [TitleComponent, CardComponent, CommonModule, FormComponent],
   templateUrl: './products-page.component.html',
   styleUrl: './products-page.component.css'
 })
@@ -18,7 +19,8 @@ export class ProductsPageComponent implements OnInit {
 
   products: Entity[] = [];
   isAuthenticated: boolean = false;
-  mostrarFormulario: boolean = false;
+  showForm: boolean = false;
+  entity!: Entity;
 
   constructor(private firestoreService: FirestoreService, private auth: AuthService) {
     this.auth.user$.subscribe(user => {
@@ -44,8 +46,12 @@ export class ProductsPageComponent implements OnInit {
     }
   }
 
-  toggleFormulario() {
-    this.mostrarFormulario = !this.mostrarFormulario;
+  toggleForm() {
+    this.showForm = !this.showForm;
+  }
+
+  onSubmitProduct(entity: Entity) {
+    //this.productService.save(entity); // lógica para guardar el producto
   }
 
 }
