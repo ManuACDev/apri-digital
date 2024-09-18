@@ -18,12 +18,13 @@ export class FormComponent {
   @Output() submitForm = new EventEmitter<Entity>();
 
   entityForm: FormGroup;
-  imageFile: File | null = null;
-  videoFile: File | null = null;
-  additionalImages: File[] = [];
+
+  //imageFile: File | null = null;
+  //videoFile: File | null = null;
+  //additionalImages: File[] = [];
 
   constructor(private fb: FormBuilder) {
-    this.entityForm = this.fb.group({
+    /*this.entityForm = this.fb.group({
       title: ['', Validators.required],
       subtitle: ['', Validators.required],
       imageSrc: ['', Validators.required],
@@ -34,7 +35,12 @@ export class FormComponent {
 
     if (this.entity?.sections) {
       this.entity.sections.forEach(section => this.addSection(section));
-    }
+    }*/
+    // Solo título y subtítulo
+    this.entityForm = this.fb.group({
+      title: ['', Validators.required],
+      subtitle: ['', Validators.required]
+    });
   }
 
   ngOnInit() {
@@ -50,7 +56,8 @@ export class FormComponent {
   addSection(section?: Section) {
     const sectionForm = this.fb.group({
       title: [section?.title || '', Validators.required],
-      content: [section?.content || '', Validators.required]
+      content: [section?.content || '', Validators.required],
+      list: [section?.list || '']
     });
     this.sections.push(sectionForm);
   }
@@ -62,27 +69,43 @@ export class FormComponent {
   onImageSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.imageFile = file;
+      //this.imageFile = file;
     }
   }
 
   onVideoSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.videoFile = file;
+      //this.videoFile = file;
     }
   }
 
   onImagesSelected(event: any) {
     const files = Array.from(event.target.files);
-    this.additionalImages = files as File[];
+    //this.additionalImages = files as File[];
   }
 
   onSubmit() {
+    /*if (this.entityForm.valid) {
+      const formData = { 
+        ...this.entityForm.value, // Los campos del formulario
+        imageFile: this.imageFile, // Archivo de la imagen principal
+        videoFile: this.videoFile, // Archivo del video
+        additionalImages: this.additionalImages // Imágenes adicionales
+      };
+  
+      console.log("Formulario enviado: ", formData);
+      this.submitForm.emit(formData); // Emitimos los datos para que el componente padre los maneje
+    } else {
+      console.error("El formulario no es válido");
+      console.log('Errores:', this.entityForm.errors);
+    }*/
     if (this.entityForm.valid) {
-      //this.submitForm.emit(this.entityForm.value);
-      const formData = this.entityForm.value;
-      console.log('Formulario enviado:', formData);
+      const formData = this.entityForm.value; // Solo título y subtítulo
+      console.log("Formulario enviado:", formData);
+      this.submitForm.emit(formData);
+    } else {
+      console.error("El formulario no es válido");
     }
   }
   

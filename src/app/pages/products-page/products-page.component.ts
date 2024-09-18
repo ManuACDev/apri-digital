@@ -51,7 +51,11 @@ export class ProductsPageComponent implements OnInit {
   }
 
   onSubmitProduct(entity: Entity) {
-    //this.productService.save(entity); // lógica para guardar el producto
+    this.firestoreService.createColl(entity, "Productos").then(doc => {
+      console.log("Producto guardado con éxito: ", doc.id);
+    }).catch(error => {
+      console.error("Error al guardar el producto: ", error);
+    });
   }
 
 }

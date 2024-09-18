@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, Firestore, getDocs } from '@angular/fire/firestore';
+import { addDoc, collection, Firestore, getDocs } from '@angular/fire/firestore';
 import { catchError, from, map, Observable, take } from 'rxjs';
 
 @Injectable({
@@ -25,6 +25,17 @@ export class FirestoreService {
         throw error;
       })
     );
+  }
+
+  createColl(data: any, path: string): Promise<any> {
+    const collectionRef = collection(this.firestore, path);
+    return addDoc(collectionRef, data).then(docRef => {
+      console.log("Documento añadido con ID: ", docRef.id);
+      return docRef;
+    }).catch(error => {
+      console.error("Error al añadir documento: ", error);
+      throw error;
+    });
   }
 
 }
