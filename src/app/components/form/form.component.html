@@ -1,1 +1,27 @@
-<p>form works!</p>
+<form [formGroup]="entityForm" (ngSubmit)="onSubmit()">
+  <h3>{{ entityType }} Form</h3>
+
+  <div>
+    <label for="title">Título</label>
+    <input formControlName="title" id="title" type="text">
+  </div>
+
+  <div>
+    <label for="subtitle">Subtítulo</label>
+    <input formControlName="subtitle" id="subtitle" type="text">
+  </div>
+
+  <div>
+    <label for="imageSrc">Imagen Principal</label>
+    <input formControlName="imageSrc" id="imageSrc" type="text">
+  </div>
+
+  <div>
+    <label for="videoUrl">URL del Video</label>
+    <input formControlName="videoUrl" id="videoUrl" type="text">
+  </div>
+
+  <!-- Lógica para secciones -->
+  
+  <button type="submit">Guardar {{ entityType }}</button>
+</form>
