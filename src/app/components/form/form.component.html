@@ -1,27 +1,53 @@
-<form [formGroup]="entityForm" (ngSubmit)="onSubmit()">
-  <h3>{{ entityType }} Form</h3>
+<section class="form-container">
+  <div class="form-card">
+    <form [formGroup]="entityForm" (ngSubmit)="onSubmit()" class="formulario">
+      <h3 class="form-title">Formulario {{ entityType }}</h3>
 
-  <div>
-    <label for="title">Título</label>
-    <input formControlName="title" id="title" type="text">
+      <div>
+        <label for="title">Título</label>
+        <input formControlName="title" id="title" type="text">
+      </div>
+
+      <div>
+        <label for="subtitle">Subtítulo</label>
+        <input formControlName="subtitle" id="subtitle" type="text">
+      </div>
+
+      <div>
+        <label for="imageSrc">Imagen Principal</label>
+        <input (change)="onImageSelected($event)" id="imageSrc" type="file" accept="image/*">
+      </div>
+
+      <div>
+        <label for="images">Imágenes adicionales</label>
+        <input (change)="onImagesSelected($event)" id="images" type="file" accept="image/*" multiple>
+      </div>
+
+      <div>
+        <label for="videoUrl">Vídeo</label>
+        <input (change)="onVideoSelected($event)" id="videoUrl" type="file" accept="video/*">
+      </div>
+
+      <div formArrayName="sections">
+        <div *ngFor="let section of sections.controls; let i = index" class="section-form">
+          <div [formGroupName]="i">
+            <label for="sectionTitle{{i}}">Título de sección</label>
+            <input id="sectionTitle{{i}}" formControlName="title" type="text" class="form-input">
+
+            <label for="sectionContent{{i}}">Contenido de sección</label>
+            <textarea id="sectionContent{{i}}" formControlName="content" class="form-textarea"></textarea>
+
+            <label for="sectionList{{i}}">Lista (opcional)</label>
+            <input id="sectionList{{i}}" formControlName="list" type="text" placeholder="Añadir elementos separados por comas" class="form-input">
+
+            <button type="button" (click)="removeSection(i)" class="remove-button">Eliminar sección</button>
+          </div>
+        </div>
+
+        <button type="button" (click)="addSection()" class="add-button">Añadir Sección</button>
+      </div>
+
+      <button type="submit" class="save-button">Guardar {{ entityType }}</button>
+    </form>
   </div>
-
-  <div>
-    <label for="subtitle">Subtítulo</label>
-    <input formControlName="subtitle" id="subtitle" type="text">
-  </div>
-
-  <div>
-    <label for="imageSrc">Imagen Principal</label>
-    <input formControlName="imageSrc" id="imageSrc" type="text">
-  </div>
-
-  <div>
-    <label for="videoUrl">URL del Video</label>
-    <input formControlName="videoUrl" id="videoUrl" type="text">
-  </div>
-
-  <!-- Lógica para secciones -->
-  
-  <button type="submit">Guardar {{ entityType }}</button>
-</form>
+</section>
