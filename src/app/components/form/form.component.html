@@ -24,7 +24,7 @@
       </div>
 
       <div>
-        <label for="videoUrl">Vídeo</label>
+        <label for="videoUrl">Vídeo (Opcional)</label>
         <input (change)="onVideoSelected($event)" id="videoUrl" type="file" accept="video/*">
       </div>
 
@@ -45,6 +45,14 @@
         </div>
 
         <button type="button" (click)="addSection()" class="add-button">Añadir Sección</button>
+      </div>
+
+      <div *ngIf="interaction.successMessage" class="success-message">
+        {{ interaction.successMessage }}
+      </div>
+      
+      <div *ngIf="interaction.errorMessage" class="error-message">
+        {{ interaction.errorMessage }}
       </div>
 
       <button type="submit" [disabled]="loading" class="save-button">Guardar {{ entityType }}</button>

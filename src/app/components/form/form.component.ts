@@ -3,6 +3,7 @@ import { Entity } from '../../models/entity';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Section } from '../../models/section';
 import { CommonModule } from '@angular/common';
+import { InteractionService } from '../../services/interaction.service';
 
 @Component({
   selector: 'app-form',
@@ -24,7 +25,7 @@ export class FormComponent {
   images: File[] = [];
   videoUrl: File | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public interaction: InteractionService) {
     this.entityForm = this.fb.group({
       title: ['', Validators.required],
       subtitle: ['', Validators.required],
@@ -85,7 +86,14 @@ export class FormComponent {
   }
 
   onSubmit() {
-    if (this.entityForm.valid && this.imageSrc && this.images.length > 0 && this.sections.length > 0) {
+    this.interaction.clearMessages();
+    
+    if (this.entityForm.valid && this.imageSrc && this.images.length > 0) {
+      if (this.sections.length === 0) {
+        this.interaction.showErrorMessage("Debes añadir al menos una sección.");
+        return;
+      }
+
       const sections = this.sections.value.map((section: any) => ({
         ...section,
         list: section.list ? section.list.split('.').map((item: string) => item.trim()) : []
@@ -99,10 +107,10 @@ export class FormComponent {
         images: this.images
       };
       
-      console.log("Formulario enviado:", formData);
       this.submitForm.emit(formData);
+      this.interaction.showSuccessMessage("Formulario enviado correctamente.");
     } else {
-      console.error("El formulario no es válido");
+      this.interaction.showErrorMessage("Por favor, completa todos los campos requeridos.");
     }
   }
   
