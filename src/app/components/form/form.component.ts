@@ -15,6 +15,7 @@ export class FormComponent {
 
   @Input() entity: Entity | null = null;
   @Input() entityType!: string;
+  @Input() loading: boolean = false;
   @Output() submitForm = new EventEmitter<Entity>();
 
   entityForm: FormGroup;

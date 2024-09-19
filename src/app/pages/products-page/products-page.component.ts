@@ -7,6 +7,7 @@ import { lastValueFrom } from 'rxjs';
 import { Entity } from '../../models/entity';
 import { AuthService } from '../../services/auth.service';
 import { FormComponent } from "../../components/form/form.component";
+import { FirestorageService } from '../../services/firestorage.service';
 
 @Component({
   selector: 'app-products-page',
@@ -21,13 +22,13 @@ export class ProductsPageComponent implements OnInit {
   isAuthenticated: boolean = false;
   showForm: boolean = false;
   entity!: Entity;
+  loading: boolean = false;
 
-  constructor(private firestoreService: FirestoreService, private auth: AuthService) {
+  constructor(private firestoreService: FirestoreService, private auth: AuthService, private firestorage: FirestorageService) {
     this.auth.user$.subscribe(user => {
       this.isAuthenticated = !!user;
       console.log("isAuthenticated: " + this.isAuthenticated)
     });
-
   }
 
   ngOnInit() {
@@ -51,10 +52,42 @@ export class ProductsPageComponent implements OnInit {
   }
 
   onSubmitProduct(entity: Entity) {
-    this.firestoreService.createColl(entity, "Productos").then(doc => {
-      console.log("Producto guardado con éxito: ", doc.id);
+    this.loading = true;
+    const productTitle  = entity.title;
+    const imagePath = `Productos/${productTitle}`;
+
+    this.firestorage.uploadMedia(entity.imageSrc, imagePath).then(imageSrc => {
+      entity.imageSrc = imageSrc;
+
+      if (entity.videoUrl) {
+        const videoPath = `Productos/${productTitle}/video`;
+        return this.firestorage.uploadMedia(entity.videoUrl, videoPath).then(videoUrl => {
+          entity.videoUrl = videoUrl;
+          return Promise.resolve();
+        });
+      }
+      return Promise.resolve();
+    }).then(() => {
+      if (entity.images.length > 0) {
+        const imageUploadPromises = entity.images.map((image) => {
+          const additionalImagePath = `Productos/${productTitle}/images`;
+          return this.firestorage.uploadMedia(image, additionalImagePath);
+        });
+
+        return Promise.all(imageUploadPromises).then(urls => {
+          entity.images = urls;
+        });
+      }
+      return Promise.resolve();
+    }).then(() => {
+      this.firestoreService.createColl(entity, "Productos").then(doc => {
+        console.log("Producto guardado con éxito: ", doc.id);
+        //return this.firestoreService.updateDoc("Productos", doc.id, { id: doc.id });
+      });
     }).catch(error => {
       console.error("Error al guardar el producto: ", error);
+    }).finally(() => {
+      this.loading = false;
     });
   }
 

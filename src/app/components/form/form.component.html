@@ -47,7 +47,7 @@
         <button type="button" (click)="addSection()" class="add-button">Añadir Sección</button>
       </div>
 
-      <button type="submit" class="save-button">Guardar {{ entityType }}</button>
+      <button type="submit" [disabled]="loading" class="save-button">Guardar {{ entityType }}</button>
     </form>
   </div>
 </section>
