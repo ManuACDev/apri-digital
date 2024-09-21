@@ -47,12 +47,12 @@
         <button type="button" (click)="addSection()" class="add-button">Añadir Sección</button>
       </div>
 
-      <div *ngIf="interaction.successMessage" class="success-message">
-        {{ interaction.successMessage }}
+      <div *ngIf="interaction.successMessage || successMessage" class="success-message">
+        {{ interaction.successMessage || successMessage }}
       </div>
       
-      <div *ngIf="interaction.errorMessage" class="error-message">
-        {{ interaction.errorMessage }}
+      <div *ngIf="interaction.errorMessage || errorMessage" class="error-message">
+        {{ interaction.errorMessage || errorMessage }}
       </div>
 
       <button type="submit" [disabled]="loading" class="save-button">Guardar {{ entityType }}</button>

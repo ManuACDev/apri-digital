@@ -8,6 +8,7 @@ import { Entity } from '../../models/entity';
 import { AuthService } from '../../services/auth.service';
 import { FormComponent } from "../../components/form/form.component";
 import { FirestorageService } from '../../services/firestorage.service';
+import { InteractionService } from '../../services/interaction.service';
 
 @Component({
   selector: 'app-products-page',
@@ -24,7 +25,7 @@ export class ProductsPageComponent implements OnInit {
   entity!: Entity;
   loading: boolean = false;
 
-  constructor(private firestoreService: FirestoreService, private auth: AuthService, private firestorage: FirestorageService) {
+  constructor(private firestoreService: FirestoreService, private auth: AuthService, private firestorage: FirestorageService, public interaction: InteractionService) {
     this.auth.user$.subscribe(user => {
       this.isAuthenticated = !!user;
       console.log("isAuthenticated: " + this.isAuthenticated)
@@ -82,12 +83,17 @@ export class ProductsPageComponent implements OnInit {
     }).then(() => {
       this.firestoreService.createColl(entity, "Productos").then(doc => {
         console.log("Producto guardado con éxito: ", doc.id);
+        this.interaction.showSuccessMessage("Producto guardado con éxito.");
         //return this.firestoreService.updateDoc("Productos", doc.id, { id: doc.id });
       });
     }).catch(error => {
       console.error("Error al guardar el producto: ", error);
+      this.interaction.showErrorMessage("Error al guardar el producto.");
     }).finally(() => {
-      this.loading = false;
+      setTimeout(() => {
+        this.showForm = false;
+        this.getProductos();
+      }, 1000);
     });
   }
 

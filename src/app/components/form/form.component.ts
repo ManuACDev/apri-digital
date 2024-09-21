@@ -18,6 +18,8 @@ export class FormComponent {
   @Input() entityType!: string;
   @Input() loading: boolean = false;
   @Output() submitForm = new EventEmitter<Entity>();
+  @Input() successMessage: string | null = null;
+  @Input() errorMessage: string | null = null;
 
   entityForm: FormGroup;
 

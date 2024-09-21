@@ -16,6 +16,8 @@ a mejorar su negocio"></app-title>
         [entity]="entity"
         entityType="productos"
         [loading]="loading"
+        [successMessage]="interaction.successMessage"
+        [errorMessage]="interaction.errorMessage"
         (submitForm)="onSubmitProduct($event)">
       </app-form>
     </div>
