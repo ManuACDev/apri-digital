@@ -50,6 +50,20 @@
   width: 100%;
 }
 
+.logout-button {
+  margin-left: 20px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
+
 .header-content {
   width: 75%;
   display: flex;

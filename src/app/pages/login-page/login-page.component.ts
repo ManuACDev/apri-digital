@@ -29,7 +29,7 @@ export class LoginPageComponent implements OnInit {
     } else {
       this.interaction.showSuccessMessage("Cargando...");      
       await this.auth.login(this.email, this.password).then((res) => {
-        if (res && res.user) {
+        if (res) {
           this.interaction.clearMessages();
           this.interaction.navegarComponente("Inicio de sesión exitoso.", "home");
         }

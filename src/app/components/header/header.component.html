@@ -3,6 +3,7 @@
     <div class="top-bar">
       <!--<span class="phone-number">Teléfono: 981 92 33 60</span>-->
       <a routerLink="/login" class="private-link">ZONA PRIVADA</a>
+      <button *ngIf="isAuthenticated" (click)="logout()" class="logout-button">Cerrar sesión</button>
     </div>
   </section>
 

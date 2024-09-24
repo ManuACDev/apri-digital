@@ -1,34 +1,39 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Auth, signInWithEmailAndPassword, signOut, authState, User, sendPasswordResetEmail } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
-import firebase from 'firebase/compat/app';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  user$!: Observable<firebase.User | null>;
+  constructor(private auth: Auth) { }
 
-  constructor(private afAuth: AngularFireAuth) {
-    this.user$ = this.afAuth.authState;
-  }
-
-  async login(correo: string, password: string) {
-    try {
-      const result = await this.afAuth.signInWithEmailAndPassword(correo, password);
-      return result;
-    } catch (error) {
-      throw error;
-    }
+  login(email: string, password: string): Promise<User | null> {
+    return signInWithEmailAndPassword(this.auth, email, password)
+      .then((userCredential) => userCredential.user)
+      .catch((error) => {
+        console.error(error);
+        return null;
+      });
   }
 
   async resetPassword(correo: string): Promise<void> {
     try {
-      return this.afAuth.sendPasswordResetEmail(correo);
+      await sendPasswordResetEmail(this.auth, correo);
+      console.log("Correo de restablecimiento de contraseña enviado.");
     } catch (error) {
-      console.log(error);
+      console.error("Error al enviar el correo de restablecimiento de contraseña:", error);
     }
+  }
+
+  getAuthState(): Observable<User | null> {
+    return authState(this.auth);
+  }
+
+  logout(): Promise<void> {
+    return signOut(this.auth);
   }
 
 }
