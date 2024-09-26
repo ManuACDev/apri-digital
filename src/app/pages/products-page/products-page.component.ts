@@ -104,14 +104,16 @@ export class ProductsPageComponent implements OnInit {
   }
   
   saveProductToFirestore(entity: Entity) {
-    this.firestoreService.createColl(entity, "Productos").then(doc => {
-      console.log("Producto guardado con éxito: ", doc.id);
+    entity.id = entity.title;
+    this.firestoreService.setDoc(entity, "Productos", entity.title).then(() => {
+      console.log("Producto guardado con éxito");
       this.interaction.showSuccessMessage("Producto guardado con éxito.");
       this.resetForm();
     }).catch(error => {
       this.handleError(error, "Error al guardar el producto en Firestore.");
     }).finally(() => {
       this.loading = false;
+      this.getProductos();
     });
   }
   

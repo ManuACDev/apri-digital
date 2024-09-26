@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, Firestore, getDocs } from '@angular/fire/firestore';
+import { addDoc, collection, deleteDoc, doc, Firestore, getDocs, setDoc, updateDoc } from '@angular/fire/firestore';
 import { catchError, from, map, Observable, take } from 'rxjs';
 
 @Injectable({
@@ -38,4 +38,13 @@ export class FirestoreService {
     });
   }
 
+  setDoc(data: any, path: string, id: string): Promise<void> {
+    const docRef = doc(this.firestore, path, id);
+    return setDoc(docRef, data).then(() => {
+      console.log("Documento guardado con ID: ", id);
+    }).catch(error => {
+      console.error("Error al guardar documento: ", error);
+      throw error;
+    });
+  }
 }
