@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -27,6 +27,7 @@ export class CardComponent {
   };
 
   @Input() isAuthenticated: boolean = false;
+  @Output() delete = new EventEmitter<any>();
   showOptions: boolean = false;
 
   toggleOptions() {
@@ -40,8 +41,6 @@ export class CardComponent {
   }
 
   onDelete() {
-    this.showOptions = false;
-    console.log("Eliminar entidad:", this.entity);
-    // Aquí puedes añadir la lógica para eliminar la entidad
+    this.delete.emit(this.entity);
   }
 }

@@ -7,7 +7,7 @@ a mejorar su negocio"></app-title>
     <h3 class="products-subtitle">
       Tecnología y calidad en cada uno de nuestros productos.
     </h3>
-    <button *ngIf="isAuthenticated" (click)="showForm = !showForm" class="add-button">+</button>
+    <button *ngIf="isAuthenticated" (click)="showForm = !showForm" (click)="this.interaction.clearMessages()" class="add-button">+</button>
   </div>
 
   <div class="product-list">
@@ -26,6 +26,7 @@ a mejorar su negocio"></app-title>
       *ngFor="let product of products"
       [entity]="product"
       [isAuthenticated]="isAuthenticated"
+      (delete)="deleteDoc($event)"
     ></app-card>
   </div>
 

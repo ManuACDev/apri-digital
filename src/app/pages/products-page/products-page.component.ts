@@ -129,4 +129,16 @@ export class ProductsPageComponent implements OnInit {
       this.getProductos();
     }, 1000);
   }
+
+  deleteDoc(entity: Entity) {
+    this.firestoreService.deleteDoc("Productos", entity.id).then(() => {
+      //this.interaction.showSuccessMessage("Producto eliminado con éxito.");
+      console.log("Producto eliminado con éxito.");
+      this.getProductos();
+      const mediaFolderPath = `Productos/${entity.title}`;
+      this.firestorage.deleteMediaFolder(mediaFolderPath);
+    }).catch(error => {
+      this.handleError(error, "Error al eliminar el producto.");
+    });
+  }
 }

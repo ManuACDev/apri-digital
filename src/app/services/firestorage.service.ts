@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Storage, ref, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage';
+import { Storage, ref, uploadBytesResumable, getDownloadURL, deleteObject, listAll } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -38,4 +38,23 @@ export class FirestorageService {
     });
   }
 
+  deleteMediaFolder(folderPath: string) {
+    const storageRef = ref(this.storage, folderPath);
+  
+    listAll(storageRef).then((result) => {
+      const deletePromises = result.items.map((itemRef) => {  
+        return deleteObject(itemRef);
+      });
+        
+      const subFolderPromises = result.prefixes.map((folderRef) => {
+        return this.deleteMediaFolder(folderRef.fullPath);
+      });
+  
+      return Promise.all([...deletePromises, ...subFolderPromises]);
+    }).then(() => {
+      console.log('Carpeta eliminada con éxito:', folderPath);
+    }).catch((error) => {
+      console.error('Error al eliminar la carpeta:', error);
+    });
+  }  
 }

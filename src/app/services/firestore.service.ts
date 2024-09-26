@@ -47,4 +47,9 @@ export class FirestoreService {
       throw error;
     });
   }
+
+  deleteDoc(path: string, id: string): Promise<void> {
+    const docRef = doc(this.firestore, `${path}/${id}`);
+    return deleteDoc(docRef);
+  }
 }
