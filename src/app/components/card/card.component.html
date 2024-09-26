@@ -4,4 +4,16 @@
     <h3 class="entity-title">{{entity.title}}</h3>
     <p class="entity-description">{{entity.subtitle}}</p>
   </a>
+
+  <div class="options-container">
+    <button *ngIf="isAuthenticated" (click)="toggleOptions()" class="options-button">
+      <i class="fas fa-ellipsis-h"></i>
+    </button>
+
+    <div *ngIf="showOptions" class="dropdown-menu">
+      <button (click)="onEdit()">Editar</button>
+      <button (click)="onDelete()">Eliminar</button>
+      <button (click)="toggleOptions()">Cerrar</button>
+    </div>
+  </div>
 </div>

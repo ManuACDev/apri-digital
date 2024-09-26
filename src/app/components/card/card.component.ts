@@ -26,4 +26,22 @@ export class CardComponent {
     }[];
   };
 
+  @Input() isAuthenticated: boolean = false;
+  showOptions: boolean = false;
+
+  toggleOptions() {
+    this.showOptions = !this.showOptions;
+  }
+
+  onEdit() {
+    this.showOptions = false;
+    console.log("Editar entidad:", this.entity);
+    // Aquí puedes añadir la lógica para editar la entidad
+  }
+
+  onDelete() {
+    this.showOptions = false;
+    console.log("Eliminar entidad:", this.entity);
+    // Aquí puedes añadir la lógica para eliminar la entidad
+  }
 }

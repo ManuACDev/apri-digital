@@ -25,6 +25,7 @@ a mejorar su negocio"></app-title>
     <app-card
       *ngFor="let product of products"
       [entity]="product"
+      [isAuthenticated]="isAuthenticated"
     ></app-card>
   </div>
 
