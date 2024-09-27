@@ -13,18 +13,35 @@
         <input formControlName="subtitle" id="subtitle" type="text">
       </div>
 
-      <div>
-        <label for="imageSrc">Imagen Principal</label>
-        <input (change)="onImageSelected($event)" id="imageSrc" type="file" accept="image/*">
-      </div>
-      
-      <div>
-        <label for="images">Imágenes adicionales</label>
-        <input (change)="onImagesSelected($event)" id="images" type="file" accept="image/*" multiple>
+      <div *ngIf="editing && entity?.imageSrc">
+        <label>Imagen Principal Actual:</label>
+        <img [src]="entity?.imageSrc" alt="Imagen actual" class="image-preview">
       </div>
 
       <div>
-        <label for="videoUrl">Vídeo (Opcional)</label>
+        <label for="imageSrc">{{ editing ? "Nueva Imagen Principal" : "Imagen Principal" }}</label>
+        <input (change)="onImageSelected($event)" id="imageSrc" type="file" accept="image/*">
+      </div>
+
+      <div *ngIf="editing && entity?.images?.length as imageLength" [hidden]="!imageLength">
+        <label>Imágenes Adicionales Actuales:</label>
+        <div class="additional-images">
+          <img *ngFor="let image of entity?.images" [src]="image" alt="Imagen adicional" class="image-preview">
+        </div>
+      </div>      
+
+      <div>
+        <label for="images">{{ editing ? "Nuevas Imágenes Adicionales" : "Imágenes Adicionales" }}</label>
+        <input (change)="onImagesSelected($event)" id="images" type="file" accept="image/*" multiple>
+      </div>
+
+      <div *ngIf="editing && entity?.videoUrl">
+        <label>Vídeo Actual:</label>
+        <video controls [src]="entity?.videoUrl" class="video-preview"></video>
+      </div>
+
+      <div>
+        <label for="videoUrl">{{ editing ? "Reemplazar Vídeo Actual (Opcional)" : "Vídeo (Opcional)" }}</label>
         <input (change)="onVideoSelected($event)" id="videoUrl" type="file" accept="video/*">
       </div>
 
@@ -55,7 +72,7 @@
         {{ interaction.errorMessage || errorMessage }}
       </div>
 
-      <button type="submit" [disabled]="loading" class="save-button">Guardar {{ entityType }}</button>
+      <button type="submit" [disabled]="loading" class="save-button">{{ editing ? "Editar" : "Guardar" }} {{ entityType }}</button>
     </form>
   </div>
 </section>

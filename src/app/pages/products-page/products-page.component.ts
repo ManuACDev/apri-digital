@@ -24,6 +24,7 @@ export class ProductsPageComponent implements OnInit {
   showForm: boolean = false;
   entity!: Entity;
   loading: boolean = false;
+  editing: boolean = false;
 
   constructor(private firestoreService: FirestoreService, private auth: AuthService, private firestorage: FirestorageService, public interaction: InteractionService) {
     this.auth.getAuthState().subscribe(user => {
@@ -58,33 +59,40 @@ export class ProductsPageComponent implements OnInit {
     const productTitle = entity.title;
     const imagePath = `Productos/${productTitle}`;
   
-    this.firestorage.uploadMedia(entity.imageSrc, imagePath).subscribe({
-      next: (imageSrc) => {
-        entity.imageSrc = imageSrc;
-  
-        if (entity.videoUrl) {
-          const videoPath = `Productos/${productTitle}/video`;
-          this.firestorage.uploadMedia(entity.videoUrl, videoPath).subscribe({
-            next: (videoUrl) => {
-              entity.videoUrl = videoUrl;
-              this.uploadAdditionalImages(entity, productTitle);
-            },
-            error: (error) => {
-              this.handleError(error, "Error al subir el video.");
-            }
-          });
-        } else {
-          this.uploadAdditionalImages(entity, productTitle);
+    if (this.entity.imageSrc !== entity.imageSrc) {
+      this.firestorage.uploadMedia(entity.imageSrc, imagePath).subscribe({
+        next: (imageSrc) => {
+          entity.imageSrc = imageSrc;
+          this.uploadVideo(entity, productTitle);
+        },
+        error: (error) => {
+          this.handleError(error, "Error al subir la imagen principal.");
         }
-      },
-      error: (error) => {
-        this.handleError(error, "Error al subir la imagen principal.");
-      }
-    });
+      });
+    } else {
+      this.uploadVideo(entity, productTitle);
+    }
+  }
+
+  uploadVideo(entity: Entity, productTitle: string) {
+    if (this.entity.videoUrl !== entity.videoUrl) {
+      const videoPath = `Productos/${productTitle}/video`;
+      this.firestorage.uploadMedia(entity.videoUrl, videoPath).subscribe({
+        next: (videoUrl) => {
+          entity.videoUrl = videoUrl;
+          this.uploadAdditionalImages(entity, productTitle);
+        },
+        error: (error) => {
+          this.handleError(error, "Error al subir el video.");
+        }
+      });
+    } else {
+      this.uploadAdditionalImages(entity, productTitle);
+    }
   }
   
   uploadAdditionalImages(entity: Entity, productTitle: string) {
-    if (entity.images.length > 0) {
+    if (this.entity.images !== entity.images && entity.images.length > 0) {
       const imageUploadObservables = entity.images.map((image) => {
         const additionalImagePath = `Productos/${productTitle}/images`;
         return this.firestorage.uploadMedia(image, additionalImagePath);
@@ -128,6 +136,18 @@ export class ProductsPageComponent implements OnInit {
       this.showForm = false;
       this.getProductos();
     }, 1000);
+  }
+
+  editDoc(entity: Entity) {
+    this.editing = true;
+    this.showForm = true;
+    
+    this.entity = { 
+      ...entity,
+      sections: [...entity.sections],
+      images: entity.images ? [...entity.images] : [],
+      videoUrl: entity.videoUrl || ""
+    };
   }
 
   deleteDoc(entity: Entity) {

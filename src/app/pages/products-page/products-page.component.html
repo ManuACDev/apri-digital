@@ -16,6 +16,7 @@ a mejorar su negocio"></app-title>
         [entity]="entity"
         entityType="productos"
         [loading]="loading"
+        [editing]="editing"
         [successMessage]="interaction.successMessage"
         [errorMessage]="interaction.errorMessage"
         (submitForm)="onSubmitProduct($event)">
@@ -27,6 +28,7 @@ a mejorar su negocio"></app-title>
       [entity]="product"
       [isAuthenticated]="isAuthenticated"
       (delete)="deleteDoc($event)"
+      (edit)="editDoc($event)"
     ></app-card>
   </div>
 

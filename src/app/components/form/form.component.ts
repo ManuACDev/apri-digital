@@ -17,6 +17,7 @@ export class FormComponent {
   @Input() entity: Entity | null = null;
   @Input() entityType!: string;
   @Input() loading: boolean = false;
+  @Input() editing: boolean = false;
   @Output() submitForm = new EventEmitter<Entity>();
   @Input() successMessage: string | null = null;
   @Input() errorMessage: string | null = null;
@@ -44,7 +45,17 @@ export class FormComponent {
 
   ngOnInit() {
     if (this.entity) {
-      this.entityForm.patchValue(this.entity);
+      this.entityForm.patchValue({
+        title: this.entity.title,
+        subtitle: this.entity.subtitle,
+        imageSrc: '',
+        videoUrl: '',
+      });
+  
+      if (this.entity.sections) {
+        this.sections.clear();
+        this.entity.sections.forEach(section => this.addSection(section));
+      }
     }
   }
 
@@ -56,7 +67,7 @@ export class FormComponent {
     const sectionForm = this.fb.group({
       title: [section?.title || '', Validators.required],
       content: [section?.content || '', Validators.required],
-      list: [section?.list || '']
+      list: [section?.list ? section.list.join('. ') : '']
     });
     this.sections.push(sectionForm);
   }
@@ -89,8 +100,10 @@ export class FormComponent {
 
   onSubmit() {
     this.interaction.clearMessages();
+
+    const isEdit = this.editing;
     
-    if (this.entityForm.valid && this.imageSrc && this.images.length > 0) {
+    if (this.entityForm.valid && (this.imageSrc || isEdit) && (this.images.length > 0 || isEdit)) {
       if (this.sections.length === 0) {
         this.interaction.showErrorMessage("Debes añadir al menos una sección.");
         return;
@@ -104,9 +117,9 @@ export class FormComponent {
       const formData = {
         ...this.entityForm.value,
         sections,
-        imageSrc: this.imageSrc,
-        videoUrl: this.videoUrl,
-        images: this.images
+        imageSrc: this.imageSrc ? this.imageSrc : this.entity?.imageSrc,
+        videoUrl: this.videoUrl ? this.videoUrl : this.entity?.videoUrl,
+        images: this.images.length > 0 ? this.images : this.entity?.images
       };
       
       this.submitForm.emit(formData);

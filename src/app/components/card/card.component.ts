@@ -28,6 +28,7 @@ export class CardComponent {
 
   @Input() isAuthenticated: boolean = false;
   @Output() delete = new EventEmitter<any>();
+  @Output() edit = new EventEmitter<any>();
   showOptions: boolean = false;
 
   toggleOptions() {
@@ -35,9 +36,8 @@ export class CardComponent {
   }
 
   onEdit() {
-    this.showOptions = false;
-    console.log("Editar entidad:", this.entity);
-    // Aquí puedes añadir la lógica para editar la entidad
+    this.edit.emit(this.entity);
+    this.showOptions = !this.showOptions;
   }
 
   onDelete() {
