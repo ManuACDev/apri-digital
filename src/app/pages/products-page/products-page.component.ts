@@ -116,6 +116,7 @@ export class ProductsPageComponent implements OnInit {
   
   saveProductToFirestore(entity: Entity) {
     entity.id = entity.title;
+    entity.type = "productos";
     this.firestoreService.setDoc(entity, "Productos", entity.title).then(() => {
       console.log("Producto guardado con éxito");
       this.interaction.showSuccessMessage("Producto guardado con éxito.");
