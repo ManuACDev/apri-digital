@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TitleComponent } from "../../components/title/title.component";
 import { CardComponent } from "../../components/card/card.component";
 import { CommonModule } from '@angular/common';
@@ -22,7 +22,7 @@ export class ProductsPageComponent implements OnInit {
   products: Entity[] = [];
   isAuthenticated: boolean = false;
   showForm: boolean = false;
-  entity!: Entity;
+  entity: Entity | null = null;
   loading: boolean = false;
   editing: boolean = false;
 
@@ -52,6 +52,9 @@ export class ProductsPageComponent implements OnInit {
 
   toggleForm() {
     this.showForm = !this.showForm;
+    this.interaction.clearMessages();
+    this.editing = false;
+    this.entity = null;
   }
 
   onSubmitProduct(entity: Entity) {
@@ -59,7 +62,7 @@ export class ProductsPageComponent implements OnInit {
     const productTitle = entity.title;
     const imagePath = `Productos/${productTitle}`;
   
-    if (this.entity.imageSrc !== entity.imageSrc) {
+    if (this.entity?.imageSrc !== entity.imageSrc) {
       this.firestorage.uploadMedia(entity.imageSrc, imagePath).subscribe({
         next: (imageSrc) => {
           entity.imageSrc = imageSrc;
@@ -75,7 +78,7 @@ export class ProductsPageComponent implements OnInit {
   }
 
   uploadVideo(entity: Entity, productTitle: string) {
-    if (this.entity.videoUrl !== entity.videoUrl) {
+    if (this.entity?.videoUrl !== entity.videoUrl) {
       const videoPath = `Productos/${productTitle}/video`;
       this.firestorage.uploadMedia(entity.videoUrl, videoPath).subscribe({
         next: (videoUrl) => {
@@ -92,7 +95,7 @@ export class ProductsPageComponent implements OnInit {
   }
   
   uploadAdditionalImages(entity: Entity, productTitle: string) {
-    if (this.entity.images !== entity.images && entity.images.length > 0) {
+    if (this.entity?.images !== entity.images && entity.images.length > 0) {
       const imageUploadObservables = entity.images.map((image) => {
         const additionalImagePath = `Productos/${productTitle}/images`;
         return this.firestorage.uploadMedia(image, additionalImagePath);
