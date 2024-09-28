@@ -53,10 +53,20 @@
 
             <label for="sectionContent{{i}}">Contenido de sección</label>
             <textarea id="sectionContent{{i}}" formControlName="content" class="form-textarea"></textarea>
-
-            <label for="sectionList{{i}}">Lista (opcional)</label>
-            <input id="sectionList{{i}}" formControlName="list" type="text" placeholder="Añadir elementos separados por puntos" class="form-input">
-
+      
+            <label>Lista (opcional)</label>
+            <div formArrayName="list">
+              <div *ngFor="let item of getList(i).controls; let j = index">
+                <input [formControlName]="j" type="text" placeholder="Elemento de la lista" class="form-input">
+                
+                <!-- Botón redondo para eliminar elemento (-) -->
+                <button type="button" (click)="removeListItem(i, j)" class="remove-button-list">-</button>
+              </div>
+      
+              <!-- Botón redondo para añadir elemento (+) -->
+              <button type="button" (click)="addListItem(i)" class="add-button-list">+</button>
+            </div>
+      
             <button type="button" (click)="removeSection(i)" class="remove-button">Eliminar sección</button>
           </div>
         </div>

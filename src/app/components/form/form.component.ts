@@ -67,14 +67,28 @@ export class FormComponent {
     const sectionForm = this.fb.group({
       title: [section?.title || '', Validators.required],
       content: [section?.content || '', Validators.required],
-      list: [section?.list ? section.list.join('. ') : '']
+      list: this.fb.array(section?.list ? section.list.map(item => this.fb.control(item)) : [])
     });
     this.sections.push(sectionForm);
-  }
+  }  
 
   removeSection(index: number) {
     this.sections.removeAt(index);
   }
+
+  addListItem(sectionIndex: number) {
+    const list = this.getList(sectionIndex);
+    list.push(this.fb.control(''));
+  }
+  
+  removeListItem(sectionIndex: number, listIndex: number) {
+    const list = this.getList(sectionIndex);
+    list.removeAt(listIndex);
+  }
+  
+  getList(sectionIndex: number): FormArray {
+    return (this.sections.at(sectionIndex) as FormGroup).get('list') as FormArray;
+  }  
 
   onImageSelected(event: any) {
     const file = event.target.files[0];
@@ -111,7 +125,7 @@ export class FormComponent {
 
       const sections = this.sections.value.map((section: any) => ({
         ...section,
-        list: section.list ? section.list.split('.').map((item: string) => item.trim()) : []
+        list: section.list ? section.list.map((item: string) => item.trim()) : []
       }));
 
       const formData = {
