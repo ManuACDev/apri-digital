@@ -136,11 +136,65 @@ export class FormComponent {
         images: this.images.length > 0 ? this.images : this.entity?.images
       };
       
-      this.submitForm.emit(formData);
-      this.interaction.showSuccessMessage("Formulario enviado correctamente.");
+      const entityHasChanged = this.hasEntityChanged(formData);
+  
+      if (entityHasChanged) {
+        this.submitForm.emit(formData);
+        this.interaction.showSuccessMessage("Formulario enviado correctamente.");
+      } else {
+        this.interaction.showErrorMessage("No se han detectado cambios en el formulario.");
+      }
     } else {
       this.interaction.showErrorMessage("Por favor, completa todos los campos requeridos.");
     }
   }
+
+  hasEntityChanged(formData: Entity): boolean {
+    if (!this.entity) {
+      return true;
+    }
+  
+    if (
+      this.entity.title !== formData.title ||
+      this.entity.subtitle !== formData.subtitle ||
+      this.entity.imageSrc !== formData.imageSrc ||
+      this.entity.videoUrl !== formData.videoUrl
+    ) {
+      return true;
+    }
+  
+    if (this.entity.sections.length !== formData.sections.length) {
+      return true;
+    }
+  
+    for (let i = 0; i < this.entity.sections.length; i++) {
+      const originalSection = this.entity.sections[i];
+      const newSection = formData.sections[i];
+  
+      if (
+        originalSection.title !== newSection.title ||
+        originalSection.content !== newSection.content ||
+        !this.areListsEqual(originalSection.list, newSection.list)
+      ) {
+        return true;
+      }
+    }
+  
+    return false;
+  }
+  
+  areListsEqual(originalList: string[] = [], newList: string[] = []): boolean {
+    if (originalList.length !== newList.length) {
+      return false;
+    }
+  
+    for (let i = 0; i < originalList.length; i++) {
+      if (originalList[i] !== newList[i]) {
+        return false;
+      }
+    }
+  
+    return true;
+  }  
   
 }
