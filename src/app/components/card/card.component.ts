@@ -35,6 +35,10 @@ export class CardComponent {
     this.showOptions = !this.showOptions;
   }
 
+  onMouseLeave() {
+    this.showOptions = false;
+  }
+
   onEdit() {
     this.edit.emit(this.entity);
     this.showOptions = !this.showOptions;
