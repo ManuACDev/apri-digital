@@ -143,6 +143,7 @@ export class ProductsPageComponent implements OnInit {
   }
 
   editDoc(entity: Entity) {
+    this.interaction.clearMessages();
     this.editing = true;
     this.showForm = true;
     
