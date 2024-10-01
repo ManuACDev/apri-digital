@@ -230,7 +230,6 @@ export class FormComponent implements OnChanges {
     });
 
     // Actualizar imágenes adicionales y secciones
-    this.images = [...this.entity.images];
     this.sections.clear();
     this.entity.sections.forEach(section => {
       this.sections.push(this.fb.group({
