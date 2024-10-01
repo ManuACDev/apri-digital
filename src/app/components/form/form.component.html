@@ -26,7 +26,7 @@
       <div *ngIf="editing && entity?.images?.length as imageLength" [hidden]="!imageLength">
         <label>Imágenes Adicionales Actuales:</label>
         <div class="additional-images">
-          <img *ngFor="let image of entity?.images" [src]="image" alt="Imagen adicional" class="image-preview">
+          <img *ngFor="let image of entity?.images" [src]="image.url" alt="Imagen adicional" class="image-preview">
         </div>
       </div>      
 
