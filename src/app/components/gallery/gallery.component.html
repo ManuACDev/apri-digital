@@ -6,7 +6,7 @@
     <div class="gallery-container">
       <!-- Mostrar solo las primeras tres imágenes -->
       <ng-container *ngFor="let image of images.slice(0, 3); let i = index">
-        <img [src]="image" 
+        <img [src]="image.url" 
              [alt]="'Imagen ' + (i + 1)" 
              class="gallery-image" 
              (click)="openLightbox(i)">
@@ -24,7 +24,7 @@
     <div class="lightbox-content">
       <span class="close" (click)="closeLightbox()">&times;</span>
       <button class="prev" (click)="prevImage()">&#10094;</button>
-      <img [src]="images[currentImageIndex]" 
+      <img [src]="images[currentImageIndex].url" 
            [alt]="'Imagen ' + (currentImageIndex + 1)" 
            class="lightbox-image">
       <button class="next" (click)="nextImage()">&#10095;</button>

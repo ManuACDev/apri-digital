@@ -3,7 +3,7 @@ import { TitleComponent } from "../../components/title/title.component";
 import { CardComponent } from "../../components/card/card.component";
 import { CommonModule } from '@angular/common';
 import { FirestoreService } from '../../services/firestore.service';
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, map } from 'rxjs';
 import { Entity } from '../../models/entity';
 import { AuthService } from '../../services/auth.service';
 import { FormComponent } from "../../components/form/form.component";
@@ -98,12 +98,21 @@ export class ProductsPageComponent implements OnInit {
     if (this.entity?.images !== entity.images && entity.images.length > 0) {
       const imageUploadObservables = entity.images.map((image) => {
         const additionalImagePath = `Productos/${productTitle}/images`;
-        return this.firestorage.uploadMedia(image, additionalImagePath);
+        return this.firestorage.uploadMedia(image, additionalImagePath).pipe(
+          map(url => ({
+            name: image.name,
+            url: url
+          }))
+        );
       });
   
       Promise.all(imageUploadObservables.map(obs => obs.toPromise()))
-        .then((urls) => {
-          entity.images = urls.filter((url): url is string => !!url);
+        .then((uploadedImages) => {
+          entity.images = uploadedImages.map((uploadedImage, index) => ({
+            ...entity.images[index],
+            name: uploadedImage?.name || entity.images[index].name,
+            url: uploadedImage?.url || entity.images[index].url
+          }));
           this.saveProductToFirestore(entity);
         })
         .catch((error) => {

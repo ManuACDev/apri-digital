@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Media } from '../../models/media';
 
 @Component({
   selector: 'app-card',
@@ -17,7 +18,7 @@ export class CardComponent {
     title: string; 
     subtitle: string;
     imageSrc: string;
-    images?: string[];
+    images?: Media[];
     videoUrl?: string;
     sections: {
       title: string;

@@ -1,3 +1,4 @@
+import { Media } from "./media";
 import { Section } from "./section";
 
 export interface Entity {
@@ -6,7 +7,7 @@ export interface Entity {
   title: string;
   subtitle: string;
   imageSrc: string;
-  images: string[];
+  images: Media[];
   videoUrl?: string;
   sections: Section[];
 }

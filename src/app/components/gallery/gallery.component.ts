@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Media } from '../../models/media';
 
 @Component({
   selector: 'app-gallery',
@@ -10,7 +11,7 @@ import { Component, Input } from '@angular/core';
 })
 export class GalleryComponent {
 
-  @Input() images: string[] = [];
+  @Input() images: Media[] = [];
   lightboxOpen: boolean = false;
   currentImageIndex: number = 0;
 
