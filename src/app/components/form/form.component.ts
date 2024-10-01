@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Entity } from '../../models/entity';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Section } from '../../models/section';
 import { CommonModule } from '@angular/common';
 import { InteractionService } from '../../services/interaction.service';
+import { Media } from '../../models/media';
 
 @Component({
   selector: 'app-form',
@@ -12,7 +13,7 @@ import { InteractionService } from '../../services/interaction.service';
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
 })
-export class FormComponent {
+export class FormComponent implements OnChanges {
 
   @Input() entity: Entity | null = null;
   @Input() entityType!: string;
@@ -25,7 +26,7 @@ export class FormComponent {
   entityForm: FormGroup;
 
   imageSrc: File | null = null;
-  images: File[] = [];
+  images: File[] | Media[] = [];
   videoUrl: File | null = null;
 
   constructor(private fb: FormBuilder, public interaction: InteractionService) {
@@ -56,6 +57,12 @@ export class FormComponent {
         this.sections.clear();
         this.entity.sections.forEach(section => this.addSection(section));
       }
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['entity'] && this.entity) {
+      this.loadEntity(this.entity);
     }
   }
 
@@ -210,4 +217,27 @@ export class FormComponent {
     return true;
   }  
   
+  loadEntity(entity: Entity) {
+    // Cargar los datos del nuevo producto en el formulario
+    this.entityForm.reset();
+    this.entity = entity;
+    this.entityForm.patchValue({
+      title: this.entity.title,
+      subtitle: this.entity.subtitle,
+      imageSrc: this.entity.imageSrc,
+      videoUrl: this.entity.videoUrl,
+      sections: this.entity.sections
+    });
+
+    // Actualizar imágenes adicionales y secciones
+    this.images = [...this.entity.images];
+    this.sections.clear();
+    this.entity.sections.forEach(section => {
+      this.sections.push(this.fb.group({
+        title: section.title,
+        content: section.content,
+        list: this.fb.array(section.list || [])
+      }));
+    });
+  }
 }
