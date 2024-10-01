@@ -157,8 +157,8 @@ export class FormComponent {
     if (
       this.entity.title !== formData.title ||
       this.entity.subtitle !== formData.subtitle ||
-      this.entity.imageSrc !== formData.imageSrc ||
-      this.entity.videoUrl !== formData.videoUrl
+      this.entity.imageSrc.name !== formData.imageSrc.name ||
+      this.entity.videoUrl?.name !== formData.videoUrl?.name
     ) {
       return true;
     }
