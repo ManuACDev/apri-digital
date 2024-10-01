@@ -179,6 +179,19 @@ export class FormComponent {
         return true;
       }
     }
+
+    if (this.entity.images.length !== formData.images.length) {
+      return true;
+    }
+  
+    for (let i = 0; i < this.entity.images.length; i++) {
+      const originalImage = this.entity.images[i];
+      const newImage = formData.images[i];
+  
+      if (originalImage.name !== newImage.name) {
+        return true;
+      }
+    }
   
     return false;
   }
