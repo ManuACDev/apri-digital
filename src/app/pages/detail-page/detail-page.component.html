@@ -9,11 +9,11 @@
 </app-title>
 
 <app-section 
-  [imageSrc]="entity.imageSrc" 
+  [imageSrc]="entity.imageSrc.url" 
   [mainTitle]="entity.title"
   [sections]="entity.sections"
 ></app-section>
 
 <app-gallery [images]="entity.images"></app-gallery>
 
-<app-video [videoUrl]="entity.videoUrl" [entityType]="entity.type"></app-video>
+<app-video [videoUrl]="entity.videoUrl.url" [entityType]="entity.type"></app-video>

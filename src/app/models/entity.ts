@@ -6,8 +6,8 @@ export interface Entity {
   type: string;
   title: string;
   subtitle: string;
-  imageSrc: string;
+  imageSrc: Media;
   images: Media[];
-  videoUrl?: string;
+  videoUrl?: Media;
   sections: Section[];
 }

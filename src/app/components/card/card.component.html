@@ -1,6 +1,6 @@
 <div class="entity-card" (mouseleave)="onMouseLeave()">
   <a [routerLink]="['/', entity.type, entity.id]" [queryParams]="{ data: (entity | json) }">
-    <img [src]="entity.imageSrc" alt="{{entity.title}}" class="entity-image">
+    <img [src]="entity.imageSrc.url" alt="{{entity.title}}" class="entity-image">
     <h3 class="entity-title">{{entity.title}}</h3>
     <p class="entity-description">{{entity.subtitle}}</p>
   </a>

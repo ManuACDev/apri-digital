@@ -15,7 +15,7 @@
 
       <div *ngIf="editing && entity?.imageSrc">
         <label>Imagen Principal Actual:</label>
-        <img [src]="entity?.imageSrc" alt="Imagen actual" class="image-preview">
+        <img [src]="entity?.imageSrc?.url" alt="Imagen actual" class="image-preview">
       </div>
 
       <div>
@@ -37,7 +37,7 @@
 
       <div *ngIf="editing && entity?.videoUrl">
         <label>Vídeo Actual:</label>
-        <video controls [src]="entity?.videoUrl" class="video-preview"></video>
+        <video controls [src]="entity?.videoUrl?.url" class="video-preview"></video>
       </div>
 
       <div>

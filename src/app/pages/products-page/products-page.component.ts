@@ -62,10 +62,13 @@ export class ProductsPageComponent implements OnInit {
     const productTitle = entity.title;
     const imagePath = `Productos/${productTitle}`;
   
-    if (this.entity?.imageSrc !== entity.imageSrc) {
+    if (this.entity?.imageSrc?.name !== entity.imageSrc?.name) {
       this.firestorage.uploadMedia(entity.imageSrc, imagePath).subscribe({
-        next: (imageSrc) => {
-          entity.imageSrc = imageSrc;
+        next: (imageSrcUrl) => {
+          entity.imageSrc = { 
+            name: entity.imageSrc.name,
+            url: imageSrcUrl
+          };
           this.uploadVideo(entity, productTitle);
         },
         error: (error) => {
@@ -78,11 +81,14 @@ export class ProductsPageComponent implements OnInit {
   }
 
   uploadVideo(entity: Entity, productTitle: string) {
-    if (this.entity?.videoUrl !== entity.videoUrl) {
+    if (this.entity?.videoUrl?.name !== entity.videoUrl?.name) {
       const videoPath = `Productos/${productTitle}/video`;
       this.firestorage.uploadMedia(entity.videoUrl, videoPath).subscribe({
         next: (videoUrl) => {
-          entity.videoUrl = videoUrl;
+          entity.videoUrl = { 
+            name: entity.videoUrl?.name || '',
+            url: videoUrl
+          };
           this.uploadAdditionalImages(entity, productTitle);
         },
         error: (error) => {
@@ -159,8 +165,8 @@ export class ProductsPageComponent implements OnInit {
     this.entity = { 
       ...entity,
       sections: [...entity.sections],
-      images: entity.images ? [...entity.images] : [],
-      videoUrl: entity.videoUrl || ""
+      imageSrc: entity.imageSrc ? { ...entity.imageSrc } : { name: '', url: '' },
+      videoUrl: entity.videoUrl ? { ...entity.videoUrl } : { name: '', url: '' }
     };
   }
 
