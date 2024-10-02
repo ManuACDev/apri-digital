@@ -76,6 +76,7 @@ export class ProductsPageComponent implements OnInit {
         }
       });
     } else {
+      entity.imageSrc = this.entity.imageSrc;
       this.uploadVideo(entity, productTitle);
     }
   }
@@ -96,6 +97,7 @@ export class ProductsPageComponent implements OnInit {
         }
       });
     } else {
+      entity.videoUrl = this.entity?.videoUrl;
       this.uploadAdditionalImages(entity, productTitle);
     }
   }
