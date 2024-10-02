@@ -132,18 +132,33 @@ export class ProductsPageComponent implements OnInit {
   }
   
   saveProductToFirestore(entity: Entity) {
-    entity.id = entity.title;
     entity.type = "productos";
-    this.firestoreService.setDoc(entity, "Productos", entity.title).then(() => {
-      console.log("Producto guardado con éxito");
-      this.interaction.showSuccessMessage("Producto guardado con éxito.");
-      this.resetForm();
-    }).catch(error => {
-      this.handleError(error, "Error al guardar el producto en Firestore.");
-    }).finally(() => {
-      this.loading = false;
-      this.getProductos();
-    });
+
+    if (this.editing) {
+      entity.id = this.entity?.id || entity.title;
+      this.firestoreService.updateDoc(entity, "Productos", entity.id).then(() => {
+        console.log("Producto actualizado con éxito");
+        this.interaction.showSuccessMessage("Producto actualizado con éxito.");
+        this.resetForm();
+      }).catch(error => {
+        this.handleError(error, "Error al actualizar el producto en Firestore.");
+      }).finally(() => {
+        this.loading = false;
+        this.getProductos();
+      });
+    } else {
+      entity.id = entity.title;
+      this.firestoreService.setDoc(entity, "Productos", entity.id).then(() => {
+        console.log("Producto guardado con éxito");
+        this.interaction.showSuccessMessage("Producto guardado con éxito.");
+        this.resetForm();
+      }).catch(error => {
+        this.handleError(error, "Error al guardar el producto en Firestore.");
+      }).finally(() => {
+        this.loading = false;
+        this.getProductos();
+      });
+    }
   }
   
   handleError(error: any, message: string) {
@@ -177,7 +192,7 @@ export class ProductsPageComponent implements OnInit {
       //this.interaction.showSuccessMessage("Producto eliminado con éxito.");
       console.log("Producto eliminado con éxito.");
       this.getProductos();
-      const mediaFolderPath = `Productos/${entity.title}`;
+      const mediaFolderPath = `Productos/${entity.id}`;
       this.firestorage.deleteMediaFolder(mediaFolderPath);
     }).catch(error => {
       this.handleError(error, "Error al eliminar el producto.");

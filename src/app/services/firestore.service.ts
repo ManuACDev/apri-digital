@@ -48,6 +48,11 @@ export class FirestoreService {
     });
   }
 
+  updateDoc(data: any, path: string, id: string): Promise<void> {
+    const docRef = doc(this.firestore, `${path}/${id}`);
+    return updateDoc(docRef, { ...data });
+  }
+
   deleteDoc(path: string, id: string): Promise<void> {
     const docRef = doc(this.firestore, `${path}/${id}`);
     return deleteDoc(docRef);
