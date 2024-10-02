@@ -10,19 +10,19 @@ a mejorar su negocio"></app-title>
     <button *ngIf="isAuthenticated" (click)="toggleForm()" class="add-button">+</button>
   </div>
 
-  <div class="product-list">
-    <div *ngIf="showForm">
-      <app-form
-        [entity]="entity"
-        entityType="productos"
-        [loading]="loading"
-        [editing]="editing"
-        [successMessage]="interaction.successMessage"
-        [errorMessage]="interaction.errorMessage"
-        (submitForm)="onSubmitProduct($event)">
-      </app-form>
-    </div>
+  <div *ngIf="showForm" class="form-container">
+    <app-form
+      [entity]="entity"
+      entityType="productos"
+      [loading]="loading"
+      [editing]="editing"
+      [successMessage]="interaction.successMessage"
+      [errorMessage]="interaction.errorMessage"
+      (submitForm)="onSubmitProduct($event)">
+    </app-form>
+  </div>
 
+  <div class="product-list">
     <app-card
       *ngFor="let product of products"
       [entity]="product"
