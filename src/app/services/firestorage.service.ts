@@ -57,4 +57,13 @@ export class FirestorageService {
       console.error('Error al eliminar la carpeta:', error);
     });
   }  
+
+  deleteFileFromStorage(path: string) {
+    const fileRef = ref(this.storage, path);
+    return deleteObject(fileRef).then(() => {
+      console.log('Archivo eliminado con éxito:', path);
+    }).catch((error) => {
+      console.error('Error al eliminar el archivo:', error);
+    });
+  }  
 }

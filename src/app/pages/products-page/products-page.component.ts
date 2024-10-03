@@ -147,28 +147,59 @@ export class ProductsPageComponent implements OnInit {
   
   uploadAdditionalImages(entity: Entity, productId: string) {
     if (this.entity?.images !== entity.images && entity.images.length > 0) {
-      const imageUploadObservables = entity.images.map((image) => {
-        const additionalImagePath = `Productos/${productId}/images`;
-        return this.firestorage.uploadMedia(image, additionalImagePath).pipe(
-          map(url => ({
-            name: image.name,
-            url: url
-          }))
-        );
-      });
-  
-      Promise.all(imageUploadObservables.map(obs => obs.toPromise()))
-        .then((uploadedImages) => {
+
+      if (this.editing) {
+        const oldImagePaths = this.entity?.images?.map(image => `Productos/${this.entity?.id}/images/${image.name}`) || [];
+        const deletePromises = oldImagePaths.map(path => this.firestorage.deleteFileFromStorage(path));
+
+        Promise.all(deletePromises).then(() => {
+          const imageUploadObservables = entity.images.map((image) => {
+            const additionalImagePath = `Productos/${productId}/images`;
+            return this.firestorage.uploadMedia(image, additionalImagePath).pipe(
+              map(url => ({
+                name: image.name,
+                url: url
+              }))
+            );
+          });
+          
+          Promise.all(imageUploadObservables.map(obs => obs.toPromise())).then((uploadedImages) => {          
+            entity.images = uploadedImages.map((uploadedImage, index) => ({
+              ...entity.images[index],
+              name: uploadedImage?.name || entity.images[index].name,
+              url: uploadedImage?.url || entity.images[index].url
+            }));
+    
+            this.saveProductToFirestore(entity);
+          }).catch((error) => {
+            this.handleError(error, "Error al subir las imágenes adicionales.");
+          });
+          
+        }).catch(error => {
+          this.handleError(error, "Error al eliminar las imágenes anteriores.");
+        });
+      } else {
+        const imageUploadObservables = entity.images.map((image) => {
+          const additionalImagePath = `Productos/${productId}/images`;
+          return this.firestorage.uploadMedia(image, additionalImagePath).pipe(
+            map(url => ({
+              name: image.name,
+              url: url
+            }))
+          );
+        });
+    
+        Promise.all(imageUploadObservables.map(obs => obs.toPromise())).then((uploadedImages) => {
           entity.images = uploadedImages.map((uploadedImage, index) => ({
             ...entity.images[index],
             name: uploadedImage?.name || entity.images[index].name,
             url: uploadedImage?.url || entity.images[index].url
           }));
           this.saveProductToFirestore(entity);
-        })
-        .catch((error) => {
+        }).catch((error) => {
           this.handleError(error, "Error al subir las imágenes adicionales.");
         });
+      }
     } else {
       this.saveProductToFirestore(entity);
     }
