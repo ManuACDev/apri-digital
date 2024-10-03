@@ -59,8 +59,8 @@ export class ProductsPageComponent implements OnInit {
 
   onSubmitProduct(entity: Entity) {
     this.loading = true;
-    const productTitle = entity.title;
-    const imagePath = `Productos/${productTitle}`;
+    const productId = this.editing ? this.entity?.id || "" : entity.title;
+    const imagePath = `Productos/${productId}`;
   
     if (this.entity?.imageSrc?.name !== entity.imageSrc?.name) {
       this.firestorage.uploadMedia(entity.imageSrc, imagePath).subscribe({
@@ -69,7 +69,7 @@ export class ProductsPageComponent implements OnInit {
             name: entity.imageSrc.name,
             url: imageSrcUrl
           };
-          this.uploadVideo(entity, productTitle);
+          this.uploadVideo(entity, productId);
         },
         error: (error) => {
           this.handleError(error, "Error al subir la imagen principal.");
@@ -77,20 +77,20 @@ export class ProductsPageComponent implements OnInit {
       });
     } else {
       entity.imageSrc = this.entity.imageSrc;
-      this.uploadVideo(entity, productTitle);
+      this.uploadVideo(entity, productId);
     }
   }
 
-  uploadVideo(entity: Entity, productTitle: string) {
+  uploadVideo(entity: Entity, productId: string) {
     if (this.entity?.videoUrl?.name !== entity.videoUrl?.name) {
-      const videoPath = `Productos/${productTitle}/video`;
+      const videoPath = `Productos/${productId}/video`;
       this.firestorage.uploadMedia(entity.videoUrl, videoPath).subscribe({
         next: (videoUrl) => {
           entity.videoUrl = { 
             name: entity.videoUrl?.name || '',
             url: videoUrl
           };
-          this.uploadAdditionalImages(entity, productTitle);
+          this.uploadAdditionalImages(entity, productId);
         },
         error: (error) => {
           this.handleError(error, "Error al subir el video.");
@@ -98,14 +98,14 @@ export class ProductsPageComponent implements OnInit {
       });
     } else {
       entity.videoUrl = this.entity?.videoUrl;
-      this.uploadAdditionalImages(entity, productTitle);
+      this.uploadAdditionalImages(entity, productId);
     }
   }
   
-  uploadAdditionalImages(entity: Entity, productTitle: string) {
+  uploadAdditionalImages(entity: Entity, productId: string) {
     if (this.entity?.images !== entity.images && entity.images.length > 0) {
       const imageUploadObservables = entity.images.map((image) => {
-        const additionalImagePath = `Productos/${productTitle}/images`;
+        const additionalImagePath = `Productos/${productId}/images`;
         return this.firestorage.uploadMedia(image, additionalImagePath).pipe(
           map(url => ({
             name: image.name,
