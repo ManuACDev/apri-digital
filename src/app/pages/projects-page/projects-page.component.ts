@@ -264,7 +264,7 @@ export class ProjectsPageComponent implements OnInit {
       //this.interaction.showSuccessMessage("Proyecto eliminado con éxito.");
       console.log("Proyecto eliminado con éxito.");
       this.getProyectos();
-      const mediaFolderPath = `Proyecto/${entity.id}`;
+      const mediaFolderPath = `Proyectos/${entity.id}`;
       this.firestorage.deleteMediaFolder(mediaFolderPath);
     }).catch(error => {
       this.handleError(error, "Error al eliminar el proyecto.");
