@@ -245,4 +245,29 @@ export class ProjectsPageComponent implements OnInit {
       this.getProyectos();
     }, 1000);
   }
+
+  editDoc(entity: Entity) {
+    this.interaction.clearMessages();
+    this.editing = true;
+    this.showForm = true;
+    
+    this.entity = { 
+      ...entity,
+      sections: [...entity.sections],
+      imageSrc: entity.imageSrc ? { ...entity.imageSrc } : { name: '', url: '' },
+      videoUrl: entity.videoUrl ? { ...entity.videoUrl } : { name: '', url: '' }
+    };
+  }
+
+  deleteDoc(entity: Entity) {
+    this.firestoreService.deleteDoc("Proyectos", entity.id).then(() => {
+      //this.interaction.showSuccessMessage("Proyecto eliminado con éxito.");
+      console.log("Proyecto eliminado con éxito.");
+      this.getProyectos();
+      const mediaFolderPath = `Proyecto/${entity.id}`;
+      this.firestorage.deleteMediaFolder(mediaFolderPath);
+    }).catch(error => {
+      this.handleError(error, "Error al eliminar el proyecto.");
+    });
+  }
 }
