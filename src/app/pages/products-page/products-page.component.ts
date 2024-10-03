@@ -91,8 +91,7 @@ export class ProductsPageComponent implements OnInit {
               url: imageSrcUrl
             };
             this.uploadVideo(entity, productId);
-          },
-          error: (error) => {
+          }, error: (error) => {
             this.handleError(error, "Error al subir la imagen principal.");
           }
         });
@@ -104,20 +103,42 @@ export class ProductsPageComponent implements OnInit {
   }
 
   uploadVideo(entity: Entity, productId: string) {
+    const videoPath = `Productos/${productId}/video`;
+
     if (this.entity?.videoUrl?.name !== entity.videoUrl?.name) {
-      const videoPath = `Productos/${productId}/video`;
-      this.firestorage.uploadMedia(entity.videoUrl, videoPath).subscribe({
-        next: (videoUrl) => {
-          entity.videoUrl = { 
-            name: entity.videoUrl?.name || '',
-            url: videoUrl
-          };
-          this.uploadAdditionalImages(entity, productId);
-        },
-        error: (error) => {
-          this.handleError(error, "Error al subir el video.");
-        }
-      });
+
+      if (this.editing) {
+        const oldVideoPath = `Productos/${this.entity?.id}/video/${this.entity?.videoUrl?.name}`;
+
+        this.firestorage.deleteFileFromStorage(oldVideoPath).then(() => {
+
+          this.firestorage.uploadMedia(entity.videoUrl, videoPath).subscribe({
+            next: (videoUrl) => {
+              entity.videoUrl = { 
+                name: entity.videoUrl?.name || '',
+                url: videoUrl
+              };
+              this.uploadAdditionalImages(entity, productId);
+            }, error: (error) => {
+              this.handleError(error, "Error al subir el video.");
+            }
+          });
+        }).catch(error => {
+          this.handleError(error, "Error al eliminar el vídeo anterior.");
+        });
+      } else {
+        this.firestorage.uploadMedia(entity.videoUrl, videoPath).subscribe({
+          next: (videoUrl) => {
+            entity.videoUrl = { 
+              name: entity.videoUrl?.name || '',
+              url: videoUrl
+            };
+            this.uploadAdditionalImages(entity, productId);
+          }, error: (error) => {
+            this.handleError(error, "Error al subir el video.");
+          }
+        });
+      }
     } else {
       entity.videoUrl = this.entity?.videoUrl;
       this.uploadAdditionalImages(entity, productId);
