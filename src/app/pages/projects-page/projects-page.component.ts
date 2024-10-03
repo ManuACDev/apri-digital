@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { Entity } from '../../models/entity';
 import { FirestoreService } from '../../services/firestore.service';
 import { lastValueFrom } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-projects-page',
@@ -16,11 +17,23 @@ import { lastValueFrom } from 'rxjs';
 export class ProjectsPageComponent implements OnInit {
 
   projects: Entity[] = [];
+  isAuthenticated: boolean = false;
 
-  constructor(private firestoreService: FirestoreService) { }
+  constructor(private firestoreService: FirestoreService, private auth: AuthService) {
+    this.auth.getAuthState().subscribe(user => {
+      this.isAuthenticated = !!user;
+    });
+  }
 
   ngOnInit() {
     this.getProyectos();
+  }
+
+  toggleForm() {
+    /*this.showForm = !this.showForm;
+    this.interaction.clearMessages();
+    this.editing = false;
+    this.entity = null;*/
   }
 
   async getProyectos(): Promise<void> {
