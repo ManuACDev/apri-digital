@@ -49,6 +49,12 @@
   background-color: #b3b3b3;
 }
 
+.form-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 10px auto 40px auto;
+}
+
 .projects-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
