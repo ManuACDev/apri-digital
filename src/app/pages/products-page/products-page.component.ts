@@ -63,18 +63,40 @@ export class ProductsPageComponent implements OnInit {
     const imagePath = `Productos/${productId}`;
   
     if (this.entity?.imageSrc?.name !== entity.imageSrc?.name) {
-      this.firestorage.uploadMedia(entity.imageSrc, imagePath).subscribe({
-        next: (imageSrcUrl) => {
-          entity.imageSrc = { 
-            name: entity.imageSrc.name,
-            url: imageSrcUrl
-          };
-          this.uploadVideo(entity, productId);
-        },
-        error: (error) => {
-          this.handleError(error, "Error al subir la imagen principal.");
-        }
-      });
+
+      if (this.editing) {
+        const oldImagePath = `Productos/${this.entity?.id}/${this.entity?.imageSrc.name}`;
+
+        this.firestorage.deleteFileFromStorage(oldImagePath).then(() => {
+
+          this.firestorage.uploadMedia(entity.imageSrc, imagePath).subscribe({
+            next: (imageSrcUrl) => {
+              entity.imageSrc = { 
+                name: entity.imageSrc.name,
+                url: imageSrcUrl
+              };
+              this.uploadVideo(entity, productId);
+            }, error: (error) => {
+              this.handleError(error, "Error al subir la imagen principal.");
+            }
+          });
+        }).catch(error => {
+          this.handleError(error, "Error al eliminar la imagen anterior.");
+        });
+      } else {
+        this.firestorage.uploadMedia(entity.imageSrc, imagePath).subscribe({
+          next: (imageSrcUrl) => {
+            entity.imageSrc = { 
+              name: entity.imageSrc.name,
+              url: imageSrcUrl
+            };
+            this.uploadVideo(entity, productId);
+          },
+          error: (error) => {
+            this.handleError(error, "Error al subir la imagen principal.");
+          }
+        });
+      }
     } else {
       entity.imageSrc = this.entity.imageSrc;
       this.uploadVideo(entity, productId);
