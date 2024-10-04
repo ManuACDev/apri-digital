@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -14,7 +14,7 @@ export class HeaderComponent {
 
   isAuthenticated: boolean = false;
 
-  constructor(private auth: AuthService) { 
+  constructor(private auth: AuthService, private elementRef: ElementRef) { 
     this.auth.getAuthState().subscribe(user => {
       this.isAuthenticated = !!user;
       console.log("isAuthenticated: " + this.isAuthenticated)
@@ -66,6 +66,14 @@ export class HeaderComponent {
       if (toggleElement) {
         toggleElement.textContent = "▼";
       }
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event): void {
+    const clickedInside = this.elementRef.nativeElement.contains(event.target);
+    if (!clickedInside) {
+      this.closeMenu();
     }
   }
 
