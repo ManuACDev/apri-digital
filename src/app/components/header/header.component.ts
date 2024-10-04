@@ -21,7 +21,11 @@ export class HeaderComponent {
     });
   }
 
-  toggleMenu() {
+  toggleMenu(event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
+  
     const sideMenu = document.getElementById('sideMenu');
     if (sideMenu) {
       sideMenu.classList.toggle('open');
@@ -71,9 +75,15 @@ export class HeaderComponent {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event): void {
-    const clickedInside = this.elementRef.nativeElement.contains(event.target);
-    if (!clickedInside) {
-      this.closeMenu();
+    const sideMenu = document.getElementById('sideMenu');
+
+    if (sideMenu) {
+      const isMenuOpen = sideMenu.classList.contains('open');
+      const clickedInsideMenu = sideMenu.contains(event.target as Node);
+
+      if (isMenuOpen && !clickedInsideMenu) {
+        this.closeMenu();
+      }
     }
   }
 

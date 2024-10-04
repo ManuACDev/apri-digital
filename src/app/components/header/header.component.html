@@ -38,13 +38,13 @@
           </ul>
         </nav>
         <div class="menu-container">
-          <button class="menu-toggle" aria-label="Open Menu" (click)="toggleMenu()">&#9776;</button>
+          <button class="menu-toggle" aria-label="Open Menu" (click)="toggleMenu($event)">&#9776;</button>
         </div>
       </section>
     </div>
 
     <nav class="side-menu" id="sideMenu" (click)="handleMenuClick($event)">
-      <button class="close-menu" aria-label="Close Menu" (click)="toggleMenu()">&times;</button>
+      <button class="close-menu" aria-label="Close Menu" (click)="toggleMenu($event)">&times;</button>
       <ul>
         <li><a routerLink="/home" routerLinkActive="active">INICIO</a></li>
 
