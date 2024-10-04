@@ -43,7 +43,7 @@
       </section>
     </div>
 
-    <nav class="side-menu" id="sideMenu">
+    <nav class="side-menu" id="sideMenu" (click)="handleMenuClick($event)">
       <button class="close-menu" aria-label="Close Menu" (click)="toggleMenu()">&times;</button>
       <ul>
         <li><a routerLink="/home" routerLinkActive="active">INICIO</a></li>

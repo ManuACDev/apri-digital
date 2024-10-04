@@ -45,4 +45,19 @@ export class HeaderComponent {
     this.auth.logout();
   }
 
+  handleMenuClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+
+    if (target.tagName === 'A' || target.closest('a')) {
+      this.closeMenu();
+    }
+  }
+
+  closeMenu() {
+    const sideMenu = document.getElementById('sideMenu');
+    if (sideMenu) {
+      sideMenu.classList.remove('open'); // Cerrar el menú
+    }
+  }
+
 }
