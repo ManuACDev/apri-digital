@@ -58,6 +58,15 @@ export class HeaderComponent {
     if (sideMenu) {
       sideMenu.classList.remove('open'); // Cerrar el menú
     }
+
+    const submenu = document.querySelector('.side-dropdown.open');
+    if (submenu) {
+      submenu.classList.remove('open');
+      const toggleElement = submenu.querySelector('.side-dropdown-toggle');
+      if (toggleElement) {
+        toggleElement.textContent = "▼";
+      }
+    }
   }
 
 }
