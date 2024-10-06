@@ -32,6 +32,9 @@ export class SliderComponent implements OnInit, OnDestroy {
   currentSlide = 0;
   autoSlideInterval: any;
 
+  startX: number = 0;
+  endX: number = 0;
+
   constructor(private ngZone: NgZone) {}
 
   ngOnInit() {
@@ -82,6 +85,27 @@ export class SliderComponent implements OnInit, OnDestroy {
   }
 
   onMouseLeave() {
+    this.resetAutoSlide();
+  }
+
+  onTouchStart(event: TouchEvent) {
+    this.startX = event.touches[0].clientX;
+  }
+  
+  onTouchMove(event: TouchEvent) {
+    this.endX = event.touches[0].clientX;
+  }
+  
+  onTouchEnd() {
+    const swipeDistance = this.startX - this.endX;
+    const swipeThreshold = 50;
+    
+    if (swipeDistance > swipeThreshold) {
+      this.nextSlide();
+    } else if (swipeDistance < -swipeThreshold) {
+      this.prevSlide();
+    }
+    
     this.resetAutoSlide();
   }
 
