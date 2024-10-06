@@ -49,10 +49,14 @@ export class LoginPageComponent implements OnInit {
   }
 
   async forgotPassword() {
+    if (!this.email) {
+      this.interaction.showErrorMessage("Por favor, introduce tu correo electrónico.");
+      return;
+    }
     this.auth.resetPassword(this.email).then(() => {
-      console.log("Correo de restablecimiento enviado");
+      this.interaction.showSuccessMessage("Correo de restablecimiento enviado. Revisa tu bandeja de entrada.");
     }).catch(error => {
-      console.error("Error al enviar el correo de restablecimiento: ", error);
+      this.interaction.showErrorMessage("Error al enviar el correo de restablecimiento. Inténtalo nuevamente.");
     });
   }
 
