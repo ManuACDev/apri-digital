@@ -55,6 +55,18 @@
   color: #9CA3AF;
 }
 
+.email {
+  font-family: 'Inter', sans-serif;
+  color: #9CA3AF;
+  text-decoration: none;
+}
+
+.number {
+  font-family: 'Inter', sans-serif;
+  color: #9CA3AF;
+  text-decoration: none;
+}
+
 .social-icons {
   display: flex;
   gap: 20px;
