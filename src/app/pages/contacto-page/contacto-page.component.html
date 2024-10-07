@@ -29,7 +29,7 @@
 
   <div class="form-card">
     <h2>Contáctanos</h2>
-    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" method="POST" class="contact-form">
       <div class="form-group">
         <label for="name">Nombre</label>
         <input type="text" id="name" formControlName="name" 
