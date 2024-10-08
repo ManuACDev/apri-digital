@@ -368,7 +368,7 @@
 
   .menu-container {
     background: #eee;
-    padding: 20px 20px;
+    padding: 20px 25px;
     display: flex;
     align-items: center;
     border-radius: 3px;
@@ -377,5 +377,6 @@
   .menu-toggle {
     display: block;
     margin-left: auto; /* Alinea el menú hamburguesa a la derecha */
+    padding: 0px;
   }
 }
