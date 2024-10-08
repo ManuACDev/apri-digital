@@ -1,4 +1,4 @@
-<div class="slider-container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" (touchstart)="onMouseEnter()" (touchend)="onMouseLeave()"
+<div class="slider-container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"
           (touchstart)="onTouchStart($event)" (touchmove)="onTouchMove($event)" (touchend)="onTouchEnd()">
   <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(' + (-currentSlide * 100) + '%)'}">
     <div class="slide" *ngFor="let slide of slides; let i = index" [ngStyle]="{'background-image': 'url(' + slide.image + ')'}">
@@ -10,8 +10,8 @@
   </div>
 
   <!-- Navigation Buttons -->
-  <button class="slider-button slider-button-left" (click)="prevSlide()">&#10094;</button>
-  <button class="slider-button slider-button-right" (click)="nextSlide()">&#10095;</button>
+  <button class="slider-button slider-button-left" (click)="prevSlide($event)">&#10094;</button>
+  <button class="slider-button slider-button-right" (click)="nextSlide($event)">&#10095;</button>
 
   <!-- Dots Navigation -->
   <div class="dots-container">

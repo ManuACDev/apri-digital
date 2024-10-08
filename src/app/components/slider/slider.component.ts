@@ -34,6 +34,7 @@ export class SliderComponent implements OnInit, OnDestroy {
 
   startX: number = 0;
   endX: number = 0;
+  isButtonTouched: boolean = false;
 
   constructor(private ngZone: NgZone) {}
 
@@ -67,12 +68,24 @@ export class SliderComponent implements OnInit, OnDestroy {
     this.startAutoSlide();
   }
   
-  nextSlide() {
+  nextSlide(event?: Event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    this.isButtonTouched = true;
     this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+    this.resetAutoSlide();
   }
 
-  prevSlide() {
+  prevSlide(event?: Event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    this.isButtonTouched = true;
     this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+    this.resetAutoSlide();
   }
 
   goToSlide(index: number) {
@@ -89,24 +102,31 @@ export class SliderComponent implements OnInit, OnDestroy {
   }
 
   onTouchStart(event: TouchEvent) {
-    this.startX = event.touches[0].clientX;
+    if (!this.isButtonTouched) {
+      this.startX = event.touches[0].clientX;
+    }    
   }
   
   onTouchMove(event: TouchEvent) {
-    this.endX = event.touches[0].clientX;
+    if (!this.isButtonTouched) {
+      this.endX = event.touches[0].clientX;
+    }
   }
   
   onTouchEnd() {
-    const swipeDistance = this.startX - this.endX;
-    const swipeThreshold = 50;
+    if (!this.isButtonTouched) {
+      const swipeDistance = this.startX - this.endX;
+      const swipeThreshold = 50;
     
-    if (swipeDistance > swipeThreshold) {
-      this.nextSlide();
-    } else if (swipeDistance < -swipeThreshold) {
-      this.prevSlide();
+      if (swipeDistance > swipeThreshold) {
+        this.nextSlide();
+      } else if (swipeDistance < -swipeThreshold) {
+        this.prevSlide();
+      }
+    
+      this.resetAutoSlide();
     }
-    
-    this.resetAutoSlide();
+    this.isButtonTouched = false;
   }
 
 }
