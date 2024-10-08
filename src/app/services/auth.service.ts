@@ -15,7 +15,7 @@ export class AuthService {
       .then((userCredential) => userCredential.user)
       .catch((error) => {
         console.error(error);
-        return null;
+        throw error;
       });
   }
 
