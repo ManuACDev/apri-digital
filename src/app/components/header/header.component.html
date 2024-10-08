@@ -44,7 +44,9 @@
     </div>
 
     <nav class="side-menu" id="sideMenu" (click)="handleMenuClick($event)">
-      <button class="close-menu" aria-label="Close Menu" (click)="toggleMenu($event)">&times;</button>
+      <div class="menu-header">
+        <button class="close-menu" aria-label="Close Menu" (click)="toggleMenu($event)">&times;</button>
+      </div>
       <ul>
         <li><a routerLink="/home" routerLinkActive="active">INICIO</a></li>
 

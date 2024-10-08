@@ -196,7 +196,7 @@
   height: 100%;
   background-color: #f5f5f5;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  padding-top: 60px;
+  padding-top: 10px;
   z-index: 1000;
   overflow-y: auto;
   transition: right 0.3s ease;
@@ -237,16 +237,22 @@
   font-weight: bold;
 }
 
-.close-menu {
-  position: absolute;
-  top: 10px;
-  left: 20px;
+.menu-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+}
+
+.close-menu {  
   font-size: 25px;
   background: none;
   border: none;
   color: #333;
   cursor: pointer;
   transition: transform 0.3s ease;
+  padding: 0;
 }
 
 .close-menu:hover {
