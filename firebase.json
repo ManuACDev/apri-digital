@@ -11,6 +11,13 @@
         "source": "**",
         "destination": "/index.csr.html"
       }
+    ],
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "https://www.apridigital.es",
+        "type": 301
+      }
     ]
   },
   "functions": [
