@@ -20,7 +20,7 @@
         {{ interaction.errorMessage }}
       </div>
 
-      <button type="submit">Iniciar Sesión</button>
+      <button type="submit" [disabled]="loading">Iniciar Sesión</button>
 
       <a (click)="forgotPassword()">Restablecer contraseña</a>
     </form>

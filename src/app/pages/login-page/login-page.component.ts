@@ -15,6 +15,7 @@ export class LoginPageComponent implements OnInit {
 
   email: string = "";
   password: string = "";
+  loading: boolean = false;
 
   constructor(private auth: AuthService, public interaction: InteractionService) {}
 
@@ -23,9 +24,11 @@ export class LoginPageComponent implements OnInit {
   }
 
   async login() {
+    this.loading = true;
     this.interaction.clearMessages();
     if (!this.email || !this.password) {
       this.interaction.showErrorMessage("El correo y la contraseña son obligatorios.");
+      this.loading = false;
     } else {
       this.interaction.showSuccessMessage("Cargando...");      
       await this.auth.login(this.email, this.password).then((res) => {
@@ -44,6 +47,8 @@ export class LoginPageComponent implements OnInit {
         } else {
           this.interaction.showErrorMessage("Error al iniciar sesión.");
         }
+      }).finally(() => {
+        this.loading = false;
       });      
     }
   }
