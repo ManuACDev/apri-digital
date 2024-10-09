@@ -30,6 +30,7 @@ export class HeaderComponent {
     if (sideMenu) {
       sideMenu.classList.toggle('open');
     }
+    this.closeSubmenu();
   }
 
   toggleSubmenu(event: Event): void {
@@ -62,7 +63,10 @@ export class HeaderComponent {
     if (sideMenu) {
       sideMenu.classList.remove('open'); // Cerrar el menú
     }
+    this.closeSubmenu();
+  }
 
+  closeSubmenu() {
     const submenu = document.querySelector('.side-dropdown.open');
     if (submenu) {
       submenu.classList.remove('open');
