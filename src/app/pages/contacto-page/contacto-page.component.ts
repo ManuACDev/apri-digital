@@ -15,7 +15,7 @@ import { ContactService } from '../../services/contact.service';
 export class ContactoPageComponent implements OnInit {
 
   contactForm: FormGroup;
-  submitted = false;
+  submitted: boolean = false;
 
   constructor(private fb: FormBuilder, public interaction: InteractionService, private contact: ContactService) {
     this.contactForm = this.fb.group({
@@ -44,9 +44,11 @@ export class ContactoPageComponent implements OnInit {
       }).catch((error) => {
         console.error("Error al enviar el formulario de contacto:", error);
         this.interaction.showErrorMessage("Error al enviar el mensaje");
+        this.submitted = false;
       });
     } else {
       this.interaction.showErrorMessage("Por favor, completa todos los campos correctamente.");
+      this.submitted = false;
     }
   }  
 

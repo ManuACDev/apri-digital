@@ -66,7 +66,7 @@
         {{ interaction.errorMessage }}
       </div>
 
-      <button type="submit" class="submit-btn">Enviar mensaje</button>
+      <button type="submit" class="submit-btn" [disabled]="submitted">Enviar mensaje</button>
     </form>
   </div>
 </div>
